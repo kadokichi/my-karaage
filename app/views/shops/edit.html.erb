@@ -1,0 +1,48 @@
+<h2>お店の情報を編集する</h2>
+
+<%= form_with model: @shop do |shop| %>
+    <table>
+      <tr>
+        <th><%= shop.label :name, "店舗名" %></th>
+        <td><%= shop.text_field :name %></td>
+      </tr>
+
+      <tr>
+        <th><%= shop.label :address, "住所" %></th>
+        <td><%= shop.text_field :address %></td>
+      </tr>
+
+      <tr>
+        <th><%= shop.label :product_name, "商品名" %></th>
+        <td><%= shop.text_field :product_name %></td>
+      </tr>
+
+      <tr>
+        <th><%= shop.label :taste, "味の種類" %></th>
+        <td><%= shop.text_field :taste %></td>
+      </tr>
+
+      <tr>
+        <th><%= shop.label :price, "予算" %></th>
+        <td><%= shop.text_field :price %></td>
+      </tr>
+
+      <tr>
+        <th><%= shop.label :description, "お店の説明" %></th>
+        <td><%= shop.text_area :description %></td>
+      </tr>
+
+      <tr>
+        <th>お店の画像</th>
+        <td><%= shop.file_field :image %></td>
+      </tr>
+
+      <tr>
+        <th><%= shop.label :shop_url, "お店のurl" %></th>
+        <td><%= shop.text_field :shop_url %></td>
+      </tr>
+
+    </table>
+        <%= link_to "キャンセル", :back %>
+        <%= shop.submit"更新する" %>
+  <% end %>

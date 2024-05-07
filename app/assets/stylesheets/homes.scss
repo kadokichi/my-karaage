@@ -1,0 +1,14 @@
+
+body {
+    background-image: url('background-image.jpg'); /* 画像のパスを指定 */
+    background-size: cover; 
+    background-repeat: repeat-y; 
+}
+
+.FirstView_Container {
+  
+  background-image: url('karaage-top.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}

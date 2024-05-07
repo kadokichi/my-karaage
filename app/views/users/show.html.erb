@@ -1,0 +1,19 @@
+
+    <%= flash[:success] %>
+  
+<p>アイコン画像</p>
+     <% if @user.image.attached? %>
+        <%= image_tag @user.image, size: "200x200" %>
+     <% else %>
+        <%= image_tag 'default-user.jpg', size: "200x200" %>
+     <% end %>
+     <p>~名前~</p>
+     <p><%= @user.name %></p>
+
+<% if @user == current_user %>
+  <%= link_to "プロフィール編集", [:edit,@user], class: "btn btn-info btn-lg" %>
+  <%= link_to 'アカウント編集', edit_user_registration_path(@user) %>
+<% end %>
+
+     
+   </div>

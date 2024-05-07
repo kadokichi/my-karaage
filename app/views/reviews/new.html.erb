@@ -1,0 +1,21 @@
+<h2>レビューを投稿する</h2>
+
+
+<%= form_with model: @review, url: shop_reviews_path(@shop) do |review| %>
+    <table>
+      <tr>
+        <th><%= review.label :score, "お店の評価" %></th>
+        <td><%= review.text_field :score %></td>
+      </tr>
+
+      <tr>
+        <th><%= review.label :content, "口コミ" %></th>
+        <td><%= review.text_area :content %></td>
+      </tr>
+
+    </table>
+    <div class="selectButton">
+        <%= link_to "キャンセル", :back %>
+        <%= review.submit "投稿する" %>
+    </div>
+<% end %>

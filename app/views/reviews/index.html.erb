@@ -1,0 +1,21 @@
+<h2><%= @shop.name %>のレビュー</h2>
+
+<% if @reviews.present? %>
+  <% @reviews.each do |review| %>
+    <div>
+      <p><%= review.user.name %></p>
+      <p><%= review.content %></p>
+      <p><%= review.score %></p>
+      <% if review.user == current_user %>
+        <%= link_to "レビューを編集する", edit_shop_review_path(@shop, review) %>
+        <%= link_to "削除", shop_review_path(@shop, review), method: :delete, data: { turbo_method: :delete, turbo_confirm: "口コミを削除してよろしいですか？" } %>
+      <% end %>
+    </div>
+  <% end %>
+<% else %>
+  <p>レビューがありません</p>
+<% end %>
+
+<% unless @reviews.any? { |review| review.user == current_user } %>
+  <%= link_to "レビューを書く", new_shop_review_path(@shop) %>
+<% end %>
