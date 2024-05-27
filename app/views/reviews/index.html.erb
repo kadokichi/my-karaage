@@ -1,21 +1,33 @@
 <h2><%= @shop.name %>のレビュー</h2>
-
+<div class="reviewsShow">
 <% if @reviews.present? %>
-  <% @reviews.each do |review| %>
-    <div>
-      <p><%= review.user.name %></p>
-      <p><%= review.content %></p>
-      <p><%= review.score %></p>
-      <% if review.user == current_user %>
-        <%= link_to "レビューを編集する", edit_shop_review_path(@shop, review) %>
-        <%= link_to "削除", shop_review_path(@shop, review), method: :delete, data: { turbo_method: :delete, turbo_confirm: "口コミを削除してよろしいですか？" } %>
-      <% end %>
-    </div>
-  <% end %>
+  <div class="reviewsBox">
+    <% @reviews.each do |review| %>
+      <div class="reviewCard">
+        <div class="reviewHeader">
+          <p class="reviewUser"><%= review.user.name %></p>
+          <p class="reviewScore">評価: <%= review.score %></p>
+        </div>
+        <div class="reviewContent">
+          <p><%= review.content %></p>
+        </div>
+        <% if review.user == current_user %>
+          <div class="reviewActions">
+            <%= link_to "編集", edit_shop_review_path(@shop, review), class: "btn btn-primary" %>
+            <%= link_to "削除", shop_review_path(@shop, review),
+                method: :delete, data: { turbo_method: :delete, turbo_confirm: "口コミを削除してよろしいですか？" },
+                class: "btn btn-danger" %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
 <% else %>
-  <p>レビューがありません</p>
+  <div class="noReview">
+    <h3>レビューがありません</h3>
+    <% unless @reviews.any? { |review| review.user == current_user } %>
+      <%= link_to "レビューを書く", new_shop_review_path(@shop) %>
+    <% end %>
+  </div>
 <% end %>
-
-<% unless @reviews.any? { |review| review.user == current_user } %>
-  <%= link_to "レビューを書く", new_shop_review_path(@shop) %>
-<% end %>
+</div>

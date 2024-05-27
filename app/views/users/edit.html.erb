@@ -1,28 +1,21 @@
-<h3>プロフィール</h3>
-
-  <div class="userEdit">
+<h2>プロフィール編集</h2>
+<div class="userContainer">
+  <div class="userInfomation">
     <%= form_with model: @user do |f| %>
-        <table>
-            <tr>
-                <th><%= f.label :image, "アイコン画像" %></th>
-                <td>
-                    <% if @user.image.attached? %>
-                        <%= image_tag @user.image, size: "70x70" %>
-                    <% else %>
-                        <%= image_tag 'default-user.jpg', size: "70x70" %>
-                    <% end %>
-                    <%= f.file_field :image %>
-                </td>
-            </tr>
-
-            <tr>
-                <th><%= f.label :name, "名前" %></th>
-                <td><%= f.text_field :name %></td>
-            </tr>
-
-        </table>
-
-        <%= link_to "キャンセル", @user %>
-        <%= f.submit "更新する" %>
-        <% end %>
+      <table>
+        <tr>
+          <th><%= f.label :image, "アイコン画像" %></th>
+          <td><%= f.file_field :image, class: "custom_Input" %></td>
+        </tr>
+        <tr>
+          <th><%= f.label :name, "名前" %></th>
+          <td><%= f.text_field :name, class: "custom_Field" %></td>
+        </tr>
+      </table>
+      <div class="selectButton">
+        <%= link_to "キャンセル", @user, class: "btn btn-secondary custom-button" %>
+        <%= f.submit "保存", class: "btn btn-success custom-button" %>
+      </div>
+    <% end %>
+  </div>
 </div>

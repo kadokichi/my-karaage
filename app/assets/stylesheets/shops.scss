@@ -1,4 +1,62 @@
-.mainContents {
-  margin: 0 auto 180px;
+.shopContainer {
+  margin: 50px auto 180px;
   max-width: 1194px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.shopAllShow {
+  margin: 50px auto 180px;
+  max-width: 1194px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+  justify-content: center;
+  align-items: start;
+  padding: 0 20px;
+}
+
+.mainContents {
+  background-color: #f0f0f0;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  font-size: 20px;
+  width: 100%;
+  max-width: 600px;
+}
+
+.shopInfomations {
+  display: flex;
+  text-align: left;
+}
+
+.shopInfomations p {
+  width: 50%;
+  word-wrap: break-word;
+}
+
+.shopEdit {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 20px;
+}
+
+@media (max-width: 1200px) {
+  .shopAllShow {
+    grid-template-columns: repeat(3, 1fr); /* 画面幅が1200px以下のときは3カラム */
+  }
+}
+
+@media (max-width: 900px) {
+  .shopAllShow {
+    grid-template-columns: repeat(2, 1fr); /* 画面幅が900px以下のときは2カラム */
+  }
+}
+
+@media (max-width: 600px) {
+  .shopAllShow {
+    grid-template-columns: 1fr; /* 画面幅が600px以下のときは1カラム */
+  }
 }

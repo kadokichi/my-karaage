@@ -7,6 +7,8 @@ class ShopsController < ApplicationController
 
   def show
     @shop = Shop.find(params[:id])
+    @reviews = @shop.reviews
+    @average_score = @reviews.average(:score)
   end
 
   def new

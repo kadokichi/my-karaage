@@ -1,0 +1,99 @@
+.userContainer {
+  margin: 50px auto 180px;
+  max-width: 1194px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.userInfomation {
+  background-color: #f0f0f0;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  font-size: 20px;
+  max-width: 600px;
+}
+
+.deviseInfomation {
+  background-color: #f0f0f0;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  font-size: 20px;
+  display: flex;
+  flex-direction: column; /* フォーム要素を縦方向に配置 */
+  align-items: center; 
+}
+
+.custom_Field_Devise {
+  width: 400px;
+  height: auto;
+  font-size: 20px;
+  padding: 10px;
+  margin-bottom: 30px;
+  margin-top: 10px;
+  }
+
+.field {
+  text-align: center;   
+}
+
+.deviseShared {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.userEdit {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.createdShops {
+  margin: 50px auto;
+  max-width: 1194px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.createdShops h3 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.shopTable {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.shopTable th, .shopTable td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.shopTable th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+.shopTable td {
+  background-color: #fff;
+}
+
+.shopImage {
+  width: 100px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  border-radius: 8px;
+}

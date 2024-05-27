@@ -1,35 +1,35 @@
-<div class="Header">
-      <div class="HeaderContainer">
-        <h1>
-          <%= link_to "Myからあげ",root_path %>
-        </h1>
-          
-        <nav class="Header_item">
-          <div class="Humberger_menu">
-            <span class="Humberger_line"></span>
-            <span class="Humberger_line"></span>
-            <span class="Humberger_line"></span>
-          </div>
-          <ul class="Header_list">
-            <li class="NavItem">
-              <a class="NavItem_link" href="https://camp.potepan.com/content"><span>CONTENT</span><span>学習内容</span></a>
-            </li>
-            <li class="NavItem">
-              <a class="NavItem_link" href="https://camp.potepan.com/interview"><span>INTERVIEW</span><span>受講生の声</span></a>
-            </li>
-            <li class="NavItem">
-              <a class="NavItem_link" href="https://camp.potepan.com/faq"><span>FAQ</span><span>よくある質問</span></a>
-            </li>
-            <li class="NavItem">
-              <a class="NavItem_link" href="https://camp.potepan.com/recruit"><span>RECRUIT</span><span>採用企業様へ</span></a>
-            </li>
-            <li class="NavItem">
-              <a class="NavItem_link" href="https://camp.potepan.com/download"><span>DOUUMENT</span><span>資料請求</span></a>
-            </li>
-            <li class="NavItem">
-              <a class="NavItem_button" href="https://camp.potepan.com/contact">無料カウンセリング</a>
-            </li>
-          </ul>
-        </nav>
-      </div>  
+<div class="header">
+  <div class="headerContainer">
+    <h1>
+      <%= link_to "Myからあげ", root_path %>
+    </h1>
+    <nav class="header_item">
+      <div class="Humberger_menu">
+        <span class="Humberger_line"></span>
+        <span class="Humberger_line"></span>
+        <span class="Humberger_line"></span>
+      </div>
+      <ul class="header_list">
+      <% if user_signed_in? %>
+        <li class="navItem">
+          <%= link_to current_user.name, user_path(current_user), class: "btn btn-primary custom-button" %>
+        </li>
+        <li class="navItem">
+          <%= link_to "店舗登録", new_shop_path, class: "btn btn-success custom-button" %>
+        </li>
+        <li class="navItem">
+          <%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete },
+              class: "btn btn-secondary custom-button" %>
+        </li>
+      <% else %>
+        <li class="navItem">
+          <%= link_to "ログイン", new_user_session_path, class: "btn btn-primary custom-button" %>
+        </li>
+        <li class="navItem">
+          <%= link_to "新規作成", new_user_registration_path, class: "btn btn-success custom-button" %>
+        </li>
+      <% end %>
+      </ul>
+    </nav>
+  </div>  
 </div>

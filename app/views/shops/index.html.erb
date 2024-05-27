@@ -1,22 +1,16 @@
-<p class="hotelName">検索結果 <%=@shops.count %> 件</p>
+<p>検索結果 <%=@shops.count %>件</p>
 
-<div class="hitRoom">
-   <% @shops.each do |shop| %> 
+<div class="shopAllShow">
+  <% @shops.each do |shop| %> 
     <div class="mainContents">
-      <% if shop.image.attached? %>
-        <%= image_tag shop.image, size: "400x300" %></p>
-      <% else %>
-        <%= image_tag 'default-shop.jpg', size: "400x300" %></p>
-      <% end %>
-        
-      <p class="hotelName"><%= shop.name%></p>
+      <h2><%= shop.name%></h2>
+      <p><%= image_tag shop.shop_image, class: "imageSize" %></p>
       <p><%= shop.address %></p>
       <p><%= shop.product_name %></p>
       <p><%= shop.taste %></p>
       <p><%= shop.description %></p>
       <p>¥<%= shop.price %></p>
-      <p><%= shop.shop_url %></p>
-      <p><%= link_to "詳細はこちら", shop %></p>  
+      <p><%= link_to "詳細はこちら", shop, class: "btn btn-primary custom-button" %></p>  
     </div>  
-   <% end %>
+  <% end %>
 </div>

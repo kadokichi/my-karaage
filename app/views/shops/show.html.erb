@@ -1,20 +1,49 @@
-<div class="mainContents">
-  <h2><%= @shop.name%></h2>
-  <% if @shop.image.attached? %>
-    <%= image_tag @shop.image, size: "400x300" %></p>
-  <% else %>
-     <%= image_tag 'default-shop.jpg', size: "400x300" %></p>
-  <% end %>
-  <p>住所:<%= @shop.address %></p>
-  <p>商品名:<%= @shop.product_name %></p>
-  <p>味の系統:<%= @shop.taste %></p>
-  <p>お店の説明:<%= @shop.description %></p>
-  <p>予算:¥<%= @shop.price %></p>
-  <p>お店のurl:<%= @shop.shop_url %></p>
+<div class="shopContainer">
+  <div class="mainContents">
+    <h2><%= @shop.name%></h2>
+    <%= image_tag @shop.shop_image, class: "imageSize" %>
+    <div class="shopInfomations">
+      <p>住所:</p>
+      <p><%= @shop.address %></p>
+    </div>
+    <div class="shopInfomations">
+      <p>オススメの商品:</p>
+      <p><%= @shop.product_name %></p>
+    </div>
+    <div class="shopInfomations">
+      <p>味の系統:</p>
+      <p><%= @shop.taste %></p>
+    </div>
+    <div class="shopInfomations">
+      <p>お店のPR:</p>
+      <p><%= @shop.description %></p>
+    </div>
+    <div class="shopInfomations">
+      <p>予算:</p>
+      <p><%= @shop.price %></p>
+    </div>
+    <div class="shopInfomations">
+      <p>お店のurl:</p>
+      <p><%= @shop.shop_url %></p>
+    </div>
+    <div class="shopInfomations">
+      <p>平均スコア:</p>
+      <p>
+        <% if @average_score.present? %>
+          <%= @average_score.round(2) %>
+        <% else %>
+          <%= "まだレビューがありません" %>
+        <% end %>
+      </p>
+    </div>
+    <%= link_to "口コミ (#{@shop.reviews.count})件", shop_reviews_path(@shop) %>
+    <div class="shopEdit">
+      <% if user_signed_in? && @shop.user_id == current_user.id %>
+        <p><%= link_to "編集",[:edit,@shop], class: "btn btn-primary custom-button" %></p>
+        <p><%= link_to "削除", @shop, method: :delete,
+            data: { turbo_method: :delete, turbo_confirm: "本当に削除してよろしいですか？" }, class: "btn btn-danger custom-button" %>
+        </p>
+      <% end %>
+    </div>
+  </div>
 </div>
-<% if user_signed_in? && @shop.user_id == current_user.id %>
-    <p><%= link_to "編集",[:edit,@shop] %></p>
-    <p><%= link_to "削除", @shop, method: :delete, data: { turbo_method: :delete, turbo_confirm: "本当に削除してよろしいですか？" } %>
-    </p>
-  <% end %>
-<%= link_to "口コミ", shop_reviews_path(@shop) %>

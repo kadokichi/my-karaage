@@ -1,0 +1,53 @@
+body {
+  background-image: url('background-image.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: auto;
+}
+
+a {
+  text-decoration: none;
+}
+
+h2 {
+  font-size: 26px;
+  padding-top: 10px;
+}
+
+.custom_Field {
+  width: 300px;
+  height: auto;
+  font-size: 20px;
+  padding: 10px;
+  margin: 10px 0 10px 50px;
+}
+
+.custom_Area {
+  width: 300px;
+  height: auto;
+  padding: 10px;
+  margin: 10px 0 10px 50px;
+}
+
+.custom_Input {
+  margin: 10px 0 10px 50px;
+  font-size: 18px;
+}
+
+.selectButton {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 20px;
+}
+
+.custom-button {
+  width: 150px;
+  font-size: 20px;
+  color: white;
+}
+
+.imageSize {
+  width: 100%;
+  height: auto; 
+}

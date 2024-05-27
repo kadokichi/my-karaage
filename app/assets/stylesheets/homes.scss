@@ -1,14 +1,24 @@
 
 body {
-    background-image: url('background-image.jpg'); /* 画像のパスを指定 */
-    background-size: cover; 
-    background-repeat: repeat-y; 
+  background-image: url('background-image.jpg');
+  background-size: cover;
 }
 
-.FirstView_Container {
-  
+.firstViewContainer {
+  height: 600px;
+  width: 100%;
   background-image: url('karaage-top.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.firstViewContainer h2 {
+  text-align: center;
+  font-size: 40px;
+  font-weight: bold;
+  color: white;
 }

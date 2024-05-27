@@ -1,19 +1,48 @@
-
-    <%= flash[:success] %>
-  
-<p>アイコン画像</p>
-     <% if @user.image.attached? %>
-        <%= image_tag @user.image, size: "200x200" %>
-     <% else %>
-        <%= image_tag 'default-user.jpg', size: "200x200" %>
-     <% end %>
-     <p>~名前~</p>
-     <p><%= @user.name %></p>
-
-<% if @user == current_user %>
-  <%= link_to "プロフィール編集", [:edit,@user], class: "btn btn-info btn-lg" %>
-  <%= link_to 'アカウント編集', edit_user_registration_path(@user) %>
-<% end %>
-
-     
-   </div>
+<%= flash[:success] %>
+<div class="userContainer">
+  <div class="userInfomation">
+    <%= image_tag @user.user_image, class: "imageSize" %>
+    <h3><%= @user.name %></h3>
+    <div class="userEdit">
+      <% if @user == current_user %>
+        <p>
+          <%= link_to "プロフィール", [:edit,@user], class: "btn btn-primary d-grid gap-2" %>
+        </p>
+        <p>
+          <%= link_to 'アカウント', edit_user_registration_path(@user), class: "btn btn-dark d-grid gap-2" %>
+        </p>
+      <% end %>
+    </div>
+  </div>
+  <div class="createdShops">
+  <h3><%= @user.name %>さんが登録した店舗</h3>
+  <table class="shopTable">
+    <thead>
+      <tr>
+        <th>店舗画像</th>
+        <th>店舗名</th>
+        <th>住所</th>
+        <th>味の系統</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if @shops.any? %>
+        <% @shops.each do |shop| %>
+          <tr>
+            <td>
+              <%= image_tag shop.shop_image, class: "shopImage" %>
+            </td>
+            <td><%= link_to shop.name, shop_path(shop) %></td>
+            <td><%= shop.address %></td>
+            <td><%= shop.taste %></td>
+          </tr>
+        <% end %>
+      <% else %>
+        <tr>
+          <td colspan="4">現在作成した店舗はありません</td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  </div>
+</div>
