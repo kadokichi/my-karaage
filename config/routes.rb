@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :users
   resources :shops do
     resources :reviews
+    resource :like, only: [:create, :destroy]
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

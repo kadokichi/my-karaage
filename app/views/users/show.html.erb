@@ -45,4 +45,35 @@
     </tbody>
   </table>
   </div>
+  <div class="likedShops">
+  <h3><%= @user.name %>さんがいいねした店舗</h3>
+  <table class="shopTable">
+    <thead>
+      <tr>
+        <th>店舗画像</th>
+        <th>店舗名</th>
+        <th>住所</th>
+        <th>味の系統</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if @liked_shops.any? %>
+        <% @liked_shops.each do |shop| %>
+          <tr>
+            <td>
+              <%= image_tag shop.shop_image, class: "shopImage" %>
+            </td>
+            <td><%= link_to shop.name, shop_path(shop) %></td>
+            <td><%= shop.address %></td>
+            <td><%= shop.taste %></td>
+          </tr>
+        <% end %>
+      <% else %>
+        <tr>
+          <td colspan="4">現在いいねした店舗はありません</td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  </div>
 </div>

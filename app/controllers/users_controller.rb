@@ -8,6 +8,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @shops = @user.shops
+    @liked_shops = @user.liked_shops
   end
 
   def update

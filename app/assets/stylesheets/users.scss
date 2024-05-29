@@ -52,7 +52,7 @@
   width: 100%;
 }
 
-.createdShops {
+.createdShops, .likedShops {
   margin: 50px auto;
   max-width: 1194px;
   padding: 20px;
@@ -61,7 +61,7 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.createdShops h3 {
+.createdShops h3, .likedShops h3 {
   text-align: center;
   margin-bottom: 20px;
   font-size: 24px;

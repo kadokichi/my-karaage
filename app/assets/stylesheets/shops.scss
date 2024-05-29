@@ -43,6 +43,49 @@
   padding-top: 20px;
 }
 
+.storeRating {
+  display: flex;
+  justify-content: space-between;
+}
+
+.storeRating i {
+  padding-right: 20px;
+}
+
+span {
+  font-size: 30px;
+}
+
+.likeCount {
+  padding-left: 10px;
+}
+
+.like-btn {
+  width: 25px;
+  height: 30px;
+  font-size: 30px;
+  color: #808080; 
+  padding-right: 20px;
+}
+ 
+.unlike-btn {
+  width: 25px;
+  height: 30px;
+  font-size: 30px;
+  color: red;
+  padding-right: 20px;
+}
+
+.storeRating p, .storeRating span {
+  height: 30px;
+  line-height: 30px;
+}
+
+.contentsTitle {
+  display: flex;
+  justify-content: space-between;
+}
+
 @media (max-width: 1200px) {
   .shopAllShow {
     grid-template-columns: repeat(3, 1fr); /* 画面幅が1200px以下のときは3カラム */
