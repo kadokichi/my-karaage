@@ -64,6 +64,15 @@
   gap: 10px;
 }
 
+.reviewsNice {
+  text-align: right;
+}
+
+.reviewsNice span {
+  padding-right: 5px;
+  font-size: 20px;
+}
+
 .noReview {
   margin: 50px auto 180px;
   max-width: 1194px;
@@ -78,4 +87,20 @@
 .noReview h3 {
   font-size: 30px;
   margin-bottom: 30px;
+}
+
+.small-like-btn {
+  width: 20px;
+  height: 20px;
+  font-size: 20px;
+  color: #808080; 
+  padding-right: 20px;
+}
+ 
+.small-unlike-btn {
+  width: 20px;
+  height: 20px;
+  font-size: 20px;
+  color: red;
+  padding-right: 20px;
 }

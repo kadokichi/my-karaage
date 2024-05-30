@@ -12,7 +12,7 @@
       <ul class="header_list">
       <% if user_signed_in? %>
         <li class="navItem">
-          <%= link_to current_user.name, user_path(current_user), class: "btn btn-primary custom-button" %>
+          <%= link_to "アカウント", user_path(current_user), class: "btn btn-primary custom-button" %>
         </li>
         <li class="navItem">
           <%= link_to "店舗登録", new_shop_path, class: "btn btn-success custom-button" %>

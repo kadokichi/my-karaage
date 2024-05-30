@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_05_29_035208) do
+ActiveRecord::Schema[7.0].define(version: 2024_05_30_072615) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -49,6 +49,15 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_29_035208) do
     t.datetime "updated_at", null: false
     t.index ["shop_id"], name: "index_likes_on_shop_id"
     t.index ["user_id"], name: "index_likes_on_user_id"
+  end
+
+  create_table "nices", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "review_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["review_id"], name: "index_nices_on_review_id"
+    t.index ["user_id"], name: "index_nices_on_user_id"
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -93,6 +102,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_29_035208) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "likes", "shops"
   add_foreign_key "likes", "users"
+  add_foreign_key "nices", "reviews"
+  add_foreign_key "nices", "users"
   add_foreign_key "reviews", "shops"
   add_foreign_key "reviews", "users"
   add_foreign_key "shops", "users"
