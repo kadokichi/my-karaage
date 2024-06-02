@@ -9,6 +9,13 @@ Rails.application.routes.draw do
     end
     resource :like, only: [:create, :destroy]
   end
+  resources :contacts, only: [:new, :create] do
+    collection do
+      post 'confirm'
+      post 'back'
+      get 'done'
+    end
+  end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
