@@ -1,4 +1,9 @@
-<p>検索結果 <%=@shops.count %>件</p>
+<%= render "layouts/search" %>
+<% if params[:sort] == "popular" %>
+  <h2>検索結果 <%= @shops.count.size %>件</h2>
+<% else %>
+  <h2>検索結果 <%=@shops.count %>件</h2>
+<% end %>
 
 <div class="shopAllShow">
   <% @shops.each do |shop| %> 
@@ -13,6 +18,7 @@
       <p><%= shop.taste %></p>
       <p><%= shop.description %></p>
       <p>¥<%= shop.price %></p>
+      <p>¥<%= shop.created_at %></p>
       <p><%= link_to "詳細はこちら", shop, class: "btn btn-primary custom-button" %></p>  
     </div>  
   <% end %>

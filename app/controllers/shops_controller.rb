@@ -1,5 +1,5 @@
 class ShopsController < ApplicationController
-  before_action :authenticate_user!, except: [:show, :index]
+  before_action :authenticate_user!, except: [:show, :index, :search]
 
   def index
     @shops = Shop.all
@@ -41,6 +41,35 @@ class ShopsController < ApplicationController
     @shop = current_user.shops.find(params[:id])
     @shop.destroy
     redirect_to root_path
+  end
+
+  def search
+    @shops = Shop.all
+
+    if params[:address].present?
+      @shops = @shops.where("address LIKE ? ", "%#{params[:address]}%")
+    end
+
+    if params[:word].present?
+      @shops = @shops.where("name LIKE ? ", "%#{params[:word]}%")
+    end
+    
+    if params[:taste].present?
+      @shops = @shops.where(taste: params[:taste])
+    end
+
+    if params[:sort].present?
+      case params[:sort]
+      when "latest"
+        @shops = @shops.order(id: :desc)
+      when "oldest"
+        @shops = @shops.order(id: :asc)
+      when "popular"
+        @shops = @shops.left_joins(:likes).group(:id).order('COUNT(likes.id) DESC')
+      end
+    end
+    
+    render :index
   end
     
   private

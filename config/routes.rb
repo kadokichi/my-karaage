@@ -4,6 +4,9 @@ Rails.application.routes.draw do
   root to: 'homes#index'
   resources :users
   resources :shops do
+    collection do
+      get 'search'
+    end
     resources :reviews do
       resource :nice, only: [:create, :destroy]
     end
