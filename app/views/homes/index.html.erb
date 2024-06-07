@@ -4,23 +4,79 @@
     <%= render "layouts/search" %>
   </div>
 </div>
-
-<% if user_signed_in? %>
-  <%= current_user.name %>
-  <%= current_user.email %>
-  <%= link_to 'Logout', destroy_user_session_path, data: { turbo_method: :delete } %>
-  <%= link_to 'ユーザー詳細', user_path(current_user) %>
-<% else %>
-  <%= link_to 'ログイン', new_user_session_path %>
-  <%= link_to 'サインアップ', new_user_registration_path %>
-<% end %>
-
-<% if user_signed_in? %>
-  <% @users.where.not(id: current_user.id).each do |user| %>
-    <%= link_to user.name, user_path(user) %>
-  <% end %>
-<% else %>
-  <% @users.each do |user| %>
-    <%= link_to user.name, user_path(user) %>
-  <% end %>
-<% end %>
+<div class="createdShops">
+  <h3>新着店舗</h3>
+  <table class="shopTable">
+    <thead>
+      <tr>
+        <th>店舗画像</th>
+        <th>店舗名</th>
+        <th>住所</th>
+        <th>味の系統</th>
+        <th>いいね数</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if @new_shops.any? %>
+        <% @new_shops.each do |shop| %>
+          <tr>
+            <td>
+              <%= image_tag shop.shop_image, class: "shopImage" %>
+            </td>
+            <td><%= link_to shop.name, shop_path(shop) %></td>
+            <td><%= shop.address %></td>
+            <td><%= shop.taste %></td>
+            <td><i class="fas fa-heart unlike-btn" ></i><span class="likeCount"><%= shop.likes.count %></span></td>
+          </tr>
+        <% end %>
+      <% else %>
+        <tr>
+          <td colspan="4">新着店舗はまだありません</td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+    <div class="moreLink">
+      <%= link_to(search_shops_path(sort: "latest"), class: "btn btn-dark d-grid gap-2") do %>
+        <%= label_tag :sort_latest, "新しい店舗をもっと見る" %>
+      <% end %>
+    </div>
+</div>
+<div class="likedShops">
+  <h3>人気の店舗</h3>
+  <table class="shopTable">
+    <thead>
+      <tr>
+        <th>店舗画像</th>
+        <th>店舗名</th>
+        <th>住所</th>
+        <th>味の系統</th>
+        <th>いいね数</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if @popular_shops.any? %>
+      <% @popular_shops.each do |shop| %>
+          <tr>
+            <td>
+              <%= image_tag shop.shop_image, class: "shopImage" %>
+            </td>
+            <td><%= link_to shop.name, shop_path(shop) %></td>
+            <td><%= shop.address %></td>
+            <td><%= shop.taste %></td>
+            <td><i class="fas fa-heart unlike-btn" ></i><span class="likeCount"><%= shop.likes.count %></span></td>
+          </tr>
+        <% end %>
+      <% else %>
+        <tr>
+          <td colspan="4">人気の店舗はまだありません</td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <div class="moreLink">
+    <%= link_to(search_shops_path(sort: "popular"), class: "btn btn-dark d-grid gap-2") do %>
+      <%= label_tag :sort_popular, "人気の店舗をもっと見る" %>
+    <% end %>
+  </div>
+</div>

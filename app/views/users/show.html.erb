@@ -23,6 +23,7 @@
         <th>店舗名</th>
         <th>住所</th>
         <th>味の系統</th>
+        <th>いいね数</th>
       </tr>
     </thead>
     <tbody>
@@ -35,6 +36,7 @@
             <td><%= link_to shop.name, shop_path(shop) %></td>
             <td><%= shop.address %></td>
             <td><%= shop.taste %></td>
+            <td><i class="fas fa-heart unlike-btn"></i><span class="likeCount"><%= shop.likes.count %></span></td>
           </tr>
         <% end %>
       <% else %>
@@ -54,6 +56,7 @@
         <th>店舗名</th>
         <th>住所</th>
         <th>味の系統</th>
+        <th>いいね数</th>
       </tr>
     </thead>
     <tbody>
@@ -66,6 +69,7 @@
             <td><%= link_to shop.name, shop_path(shop) %></td>
             <td><%= shop.address %></td>
             <td><%= shop.taste %></td>
+            <td><i class="fas fa-heart unlike-btn" ></i><span class="likeCount"><%= shop.likes.count %></span></td>
           </tr>
         <% end %>
       <% else %>
