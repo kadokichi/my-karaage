@@ -27,8 +27,8 @@
       </tr>
     </thead>
     <tbody>
-      <% if @shops.any? %>
-        <% @shops.each do |shop| %>
+      <% if @user.shops.any? %>
+        <% @user.shops.each do |shop| %>
           <tr>
             <td>
               <%= image_tag shop.shop_image, class: "shopImage" %>
@@ -36,12 +36,12 @@
             <td><%= link_to shop.name, shop_path(shop) %></td>
             <td><%= shop.address %></td>
             <td><%= shop.taste %></td>
-            <td><i class="fas fa-heart unlike-btn"></i><span class="likeCount"><%= shop.likes.count %></span></td>
+            <td><i class="fas fa-heart unlike-btn"></i><span class="likeCount"><%= shop.likes_count %></span></td>
           </tr>
         <% end %>
       <% else %>
         <tr>
-          <td colspan="4">現在作成した店舗はありません</td>
+          <td colspan="5">現在作成した店舗はありません</td>
         </tr>
       <% end %>
     </tbody>
@@ -69,12 +69,12 @@
             <td><%= link_to shop.name, shop_path(shop) %></td>
             <td><%= shop.address %></td>
             <td><%= shop.taste %></td>
-            <td><i class="fas fa-heart unlike-btn" ></i><span class="likeCount"><%= shop.likes.count %></span></td>
+            <td><i class="fas fa-heart unlike-btn" ></i><span class="likeCount"><%= shop.likes_count %></span></td>
           </tr>
         <% end %>
       <% else %>
         <tr>
-          <td colspan="4">現在いいねした店舗はありません</td>
+          <td colspan="5">現在いいねした店舗はありません</td>
         </tr>
       <% end %>
     </tbody>

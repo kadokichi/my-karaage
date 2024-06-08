@@ -6,9 +6,8 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
-    @shops = @user.shops.includes(:likes)
-    @liked_shops = @user.liked_shops.includes(:likes)
+    @user = User.includes(shops: { image_attachment: :blob }).find(params[:id])
+    @liked_shops = Shop.joins(:likes).includes(image_attachment: :blob).where(likes: { user_id: @user.id })
   end
 
   def update
