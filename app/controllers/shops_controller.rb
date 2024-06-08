@@ -2,7 +2,7 @@ class ShopsController < ApplicationController
   before_action :authenticate_user!, except: [:show, :index, :search]
 
   def index
-    @shops = Shop.all
+    @shops = Shop.includes(:likes).all
   end
 
   def show

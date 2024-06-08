@@ -12,6 +12,10 @@ class Shop < ApplicationRecord
     end
   end
 
+  def update_likes_count
+    update_column(:likes_count, likes.count)
+  end
+
   def liked?(user)
     return false unless user
     likes.where(user_id: user.id).exists?
