@@ -2,7 +2,7 @@ class ShopsController < ApplicationController
   before_action :authenticate_user!, except: [:show, :index, :search]
 
   def index
-    @shops = Shop.includes(:likes).all
+    @shops = Shop.includes(image_attachment: :blob).all
   end
 
   def show
@@ -44,7 +44,7 @@ class ShopsController < ApplicationController
   end
 
   def search
-    @shops = Shop.all
+    @shops = Shop.includes(image_attachment: :blob).all
 
     if params[:address].present?
       @shops = @shops.where("address LIKE ? ", "%#{params[:address]}%")

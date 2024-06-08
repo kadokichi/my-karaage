@@ -6,11 +6,12 @@
 <% end %>
 
 <div class="shopAllShow">
+  <% if @shops.any? %>
   <% @shops.each do |shop| %> 
     <div class="mainContents">
       <div class="contentsTitle">
         <h2><%= shop.name%></h2>
-        <p><i class="fas fa-heart unlike-btn"></i><span class="likeCount"><%= shop.likes.count %></span></p>
+        <p><i class="fas fa-heart unlike-btn"></i><span class="likeCount"><%= shop.likes_count %></span></p>
       </div>
       <p><%= image_tag shop.shop_image, class: "imageSize" %></p>
       <p><%= shop.address %></p>
@@ -18,8 +19,9 @@
       <p><%= shop.taste %></p>
       <p><%= shop.description %></p>
       <p>¥<%= shop.price %></p>
-      <p>¥<%= shop.created_at %></p>
+      <p><%= shop.created_at %></p>
       <p><%= link_to "詳細はこちら", shop, class: "btn btn-primary custom-button" %></p>  
     </div>  
+  <% end %>
   <% end %>
 </div>
