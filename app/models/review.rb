@@ -5,8 +5,12 @@ class Review < ApplicationRecord
 
   validates :user_id, uniqueness: { scope: :shop_id }
 
-  def niced?(user)
+  def niced_by?(user)
     return false unless user
-    nices.exists?(user_id: user.id)
+    nices.any? { |nice| nice.user_id == user.id }
+  end
+
+  def update_nices_count
+    update_column(:nices_count, nices.count)
   end
 end

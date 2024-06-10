@@ -3,7 +3,11 @@ class ReviewsController < ApplicationController
 
   def index
     @shop = Shop.find(params[:shop_id])
-    @reviews = @shop.reviews
+    if user_signed_in?
+      @reviews = @shop.reviews.includes(:user, :nices)
+    else
+      @reviews = @shop.reviews.includes(:user)
+    end
   end
 
   def new

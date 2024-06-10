@@ -11,13 +11,13 @@
         <div class="reviewContent">
           <p><%= review.content %></p>
           <div class="reviewsNice">
-            <% if review.niced?(current_user) %>
+            <% if review.niced_by?(current_user) %>
               <%= link_to shop_review_nice_path(@shop, review), method: :delete, data: { turbo_method: :delete } do %>
-                <i class="fas fa-heart small-unlike-btn"></i><span class="likeCount"><%= review.nices.count %></span>
+                <i class="fas fa-heart small-unlike-btn"></i><span class="likeCount"><%= review.nices_count %></span>
               <% end %>
             <% else %>
               <%= link_to shop_review_nice_path(@shop, review), method: :post, data: { turbo_method: :post } do %>
-                <i class="far fa-heart small-like-btn" ></i><span class="likeCount"><%= review.nices.count %></span>
+                <i class="far fa-heart small-like-btn" ></i><span class="likeCount"><%= review.nices_count %></span>
               <% end %>
             <% end %>
           </div>
@@ -36,9 +36,9 @@
 <% else %>
   <div class="noReview">
     <h3>レビューがありません</h3>
-    <% unless @reviews.any? { |review| review.user == current_user } %>
-      <%= link_to "レビューを書く", new_shop_review_path(@shop) %>
-    <% end %>
   </div>
+<% end %>
+<% if user_signed_in? && !@reviews.any? { |review| review.user == current_user } %>
+  <%= link_to "レビューを書く", new_shop_review_path(@shop) %>
 <% end %>
 </div>
