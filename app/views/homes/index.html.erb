@@ -1,82 +1,75 @@
-<div class="firstViewContainer">
+<div class="first-view-container mt-5 pt-5">
   <h2>あなたのお気に入りのからあげを探そう＆シェアしよう!!</h2>
-  <div class="searchForm">
+  <div class="search-form">
     <%= render "layouts/search" %>
   </div>
 </div>
-<div class="createdShops">
-  <h3>新着店舗</h3>
-  <table class="shopTable">
-    <thead>
-      <tr>
-        <th>店舗画像</th>
-        <th>店舗名</th>
-        <th>住所</th>
-        <th>味の系統</th>
-        <th>いいね数</th>
-      </tr>
-    </thead>
-    <tbody>
+<div class="container mt-4 pt-4">
+  <div class="shop-section new-shops">
+    <h3 class="shop-category">新着店舗</h3>
+    <div class="shop-list">
       <% if @new_shops.any? %>
         <% @new_shops.each do |shop| %>
-          <tr>
-            <td>
-              <%= image_tag shop.shop_image, class: "shopImage" %>
-            </td>
-            <td><%= link_to shop.name, shop_path(shop) %></td>
-            <td><%= shop.address %></td>
-            <td><%= shop.taste %></td>
-            <td><i class="fas fa-heart unlike-btn" ></i><span class="likeCount"><%= shop.likes_count %></span></td>
-          </tr>
+          <div class="shop-item">
+            <div class="shop-image">
+              <%= image_tag shop.shop_image %>
+            </div>
+            <div class="shop-details">
+              <h4 class="shop-name"><%= shop.name %></h4>
+              <p class="shop-address"><strong>住所:</strong> <%= shop.address %></p>
+              <p class="shop-taste"><strong>味の系統:</strong> <%= shop.taste %></p>
+              <div class="like-section">
+                <i class="fas fa-heart unlike-btn"></i>
+                <span class="like-count"><%= shop.likes_count %></span>
+              </div>
+              <div class="show-shops">
+                <%= link_to "詳しくはこちら", shop_path(shop) %>
+              </div>
+            </div>
+          </div>
         <% end %>
       <% else %>
-        <tr>
-          <td colspan="5">新着店舗はまだありません</td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-    <div class="moreLink">
-      <%= link_to(search_shops_path(sort: "latest"), class: "btn btn-dark d-grid gap-2") do %>
-        <%= label_tag :sort_latest, "新しい店舗をもっと見る" %>
+        <p class="no-shops">新着店舗はまだありません</p>
       <% end %>
     </div>
-</div>
-<div class="likedShops">
-  <h3>人気の店舗</h3>
-  <table class="shopTable">
-    <thead>
-      <tr>
-        <th>店舗画像</th>
-        <th>店舗名</th>
-        <th>住所</th>
-        <th>味の系統</th>
-        <th>いいね数</th>
-      </tr>
-    </thead>
-    <tbody>
+    <div class="more-link">
+      <%= link_to(search_shops_path(sort: "latest"), class: "btn btn-dark d-grid gap-2") do %>
+        新しい店舗をもっと見る
+      <% end %>
+    </div>
+  </div>
+
+  <div class="shop-section popular-shops">
+    <h3 class="shop-category">人気の店舗</h3>
+    <div class="shop-list">
       <% if @popular_shops.any? %>
-      <% @popular_shops.each do |shop| %>
-          <tr>
-            <td>
-              <%= image_tag shop.shop_image, class: "shopImage" %>
-            </td>
-            <td><%= link_to shop.name, shop_path(shop) %></td>
-            <td><%= shop.address %></td>
-            <td><%= shop.taste %></td>
-            <td><i class="fas fa-heart unlike-btn" ></i><span class="likeCount"><%= shop.likes_count %></span></td>
-          </tr>
+        <% @popular_shops.each do |shop| %>
+          <div class="shop-item">
+            <div class="shop-image">
+              <%= image_tag shop.shop_image %>
+            </div>
+            <div class="shop-details">
+              <h4 class="shop-name"><%= shop.name %></h4>
+              <p class="shop-address"><strong>住所:</strong> <%= shop.address %></p>
+              <p class="shop-taste"><strong>味の系統:</strong> <%= shop.taste %></p>
+              <div class="like-section">
+                <i class="fas fa-heart unlike-btn"></i>
+                <span class="like-count"><%= shop.likes_count %></span>
+              </div>
+              <div class="show-shops">
+                <%= link_to "詳しくはこちら", shop_path(shop) %>
+              </div>
+            </div>
+          </div>
         <% end %>
       <% else %>
-        <tr>
-          <td colspan="5">人気の店舗はまだありません</td>
-        </tr>
+        <p class="no-shops">人気の店舗はまだありません</p>
       <% end %>
-    </tbody>
-  </table>
-  <div class="moreLink">
-    <%= link_to(search_shops_path(sort: "popular"), class: "btn btn-dark d-grid gap-2") do %>
-      <%= label_tag :sort_popular, "人気の店舗をもっと見る" %>
-    <% end %>
+    </div>
+    <div class="more-link">
+      <%= link_to(search_shops_path(sort: "popular"), class: "btn btn-dark d-grid gap-2") do %>
+        人気の店舗をもっと見る
+      <% end %>
+    </div>
   </div>
 </div>

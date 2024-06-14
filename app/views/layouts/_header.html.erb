@@ -1,35 +1,50 @@
-<div class="header">
-  <div class="headerContainer">
-    <h1>
-      <%= link_to "Myからあげ", root_path %>
-    </h1>
-    <nav class="header_item">
-      <div class="Humberger_menu">
-        <span class="Humberger_line"></span>
-        <span class="Humberger_line"></span>
-        <span class="Humberger_line"></span>
-      </div>
-      <ul class="header_list">
-      <% if user_signed_in? %>
-        <li class="navItem">
-          <%= link_to "アカウント", user_path(current_user), class: "btn btn-primary custom-button" %>
-        </li>
-        <li class="navItem">
-          <%= link_to "店舗登録", new_shop_path, class: "btn btn-success custom-button" %>
-        </li>
-        <li class="navItem">
-          <%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete },
-              class: "btn btn-secondary custom-button" %>
-        </li>
-      <% else %>
-        <li class="navItem">
-          <%= link_to "ログイン", new_user_session_path, class: "btn btn-primary custom-button" %>
-        </li>
-        <li class="navItem">
-          <%= link_to "新規作成", new_user_registration_path, class: "btn btn-success custom-button" %>
-        </li>
-      <% end %>
+<div class="header fixed-top">
+    <div class="headerContainer py-3">
+      <h1 class="mb-0">
+        <%= link_to "Myからあげ", root_path, class: "text-dark" %>
+      </h1>
+      <nav class="header_item">
+        <div class="dropdown d-lg-none">
+        <button class="btn btn-white dropdown-toggle" data-bs-toggle="dropdown" >メニュー</button>
+        <ul class="dropdown-menu">
+        <% if user_signed_in? %>
+        <li><%= link_to "アカウント", user_path(current_user) %></li>
+        <li><%= link_to "店舗登録", new_shop_path %></li>
+        <li><%= link_to "お問い合わせ", new_contact_path %></li>
+        <li><%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete } %></li>
+        <% else %>
+        <li><%= link_to "ログイン", new_user_session_path %></li>
+        <li><%= link_to "新規ユーザー作成", new_user_registration_path %></li>
+        <li><%= link_to "お問い合わせ", new_contact_path %></li>
+        <% end %>
       </ul>
-    </nav>
-  </div>  
-</div>
+        </div>
+        <ul class="header_list d-lg-flex mb-0">
+          <% if user_signed_in? %>
+            <li class="navItem">
+              <%= link_to "アカウント", user_path(current_user) %>
+            </li>
+            <li class="navItem">
+              <%= link_to "店舗登録", new_shop_path %>
+            </li>
+            <li class="navItem">
+              <%= link_to "お問い合わせ", new_contact_path %>
+            </li>
+            <li class="navItem">
+              <%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete } %>
+            </li>
+          <% else %>
+            <li class="navItem">
+              <%= link_to "ログイン", new_user_session_path %>
+            </li>
+            <li class="navItem">
+              <%= link_to "新規ユーザー作成", new_user_registration_path %>
+            </li>
+            <li class="navItem">
+              <%= link_to "お問い合わせ", new_contact_path %>
+            </li>
+          <% end %>
+        </ul>
+      </nav>
+    </div>  
+  </div>

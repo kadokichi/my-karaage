@@ -1,18 +1,18 @@
-<div class="searchForm">
+<div class="search-form">
   <%= form_with url: search_shops_url, local: true, method: :get do |f| %>
-    <div class="formGroup">
+    <div class="form-group">
       <%= f.text_field :address, placeholder:"エリアを入力", style: "text-align: center;", autocomplete: "address" %>
     </div>
-    <div class="formGroup">
+    <div class="form-group">
       <%= f.text_field :word, placeholder:"キーワードを入力", style: "text-align: center;" %>
     </div>
-    <div class="formGroup">
+    <div class="form-group">
       <%= check_box_tag :taste, "濃い味系", params[:taste] == "strong_taste", id: "strong_taste" %>
       <%= label_tag :strong_taste, "濃い味系" %>
       <%= check_box_tag :taste, "あっさり系", params[:taste] == "lite_taste", id: "lite_taste" %>
       <%= label_tag :lite_taste, "あっさり系" %>
     </div>
-    <div class="formGroup">
+    <div class="form-group">
       <%= check_box_tag :sort, "latest", params[:sort] == "latest", id: "sort_latest" %>
       <%= label_tag :sort_latest, "新着順" %>
       <%= check_box_tag :sort, "oldest", params[:sort] == "oldest", id: "sort_oldest" %>
@@ -20,7 +20,7 @@
       <%= check_box_tag :sort, "popular", params[:sort] == "popular", id: "sort_popular" %>
       <%= label_tag :sort_popular, "人気順" %>
     </div>
-    <div class="formGroupButton">
+    <div class="form-group-button">
       <%= f.submit "検索", class: "btn btn-success custom-button" %>
     </div>
   <% end %>
