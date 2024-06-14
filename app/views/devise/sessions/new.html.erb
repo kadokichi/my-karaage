@@ -1,14 +1,14 @@
-<h2>ログイン</h2>
-<div class="userContainer">
-  <div class="deviseInfomation">
+<div class="user-container mt-5 pt-5">
+  <h2>ログイン</h2>
+  <div class="user-infomation">
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <div class="field">
         <%= f.label :email, "メールアドレス" %><br />
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "custom_Field_Devise" %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "custom-field" %>
       </div>
       <div class="field">
         <%= f.label :password, "パスワード" %><br />
-        <%= f.password_field :password, autocomplete: "current-password", class: "custom_Field_Devise" %>
+        <%= f.password_field :password, autocomplete: "current-password", class: "custom-field" %>
       </div>
       <% if devise_mapping.rememberable? %>
       <div class="field">
@@ -16,12 +16,12 @@
         <%= f.label :remember_me, "覚えておく" %>
       </div>
       <% end %>
-      <div class="selectButton">
+      <div class="select-button">
         <%= link_to "キャンセル", :back, class: "btn btn-secondary custom-button" %>
         <%= f.submit "ログイン", class: "btn btn-success custom-button" %>
       </div>
     <% end %>
-    <div class="deviseShared">
+    <div class="devise-shared">
       <%= render "devise/shared/links" %>
     </div>
   </div>

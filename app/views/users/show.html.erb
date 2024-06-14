@@ -1,83 +1,81 @@
 <%= flash[:success] %>
-<div class="userContainer">
-  <div class="userInfomation">
-    <%= image_tag @user.user_image, class: "imageSize" %>
-    <h3><%= @user.name %></h3>
-    <div class="userEdit">
-      <% if @user == current_user %>
-        <p>
-          <%= link_to "プロフィール", [:edit,@user], class: "btn btn-primary d-grid gap-2" %>
-        </p>
-        <p>
-          <%= link_to 'アカウント', edit_user_registration_path(@user), class: "btn btn-dark d-grid gap-2" %>
-        </p>
+<div class="user-container mt-5 pt-5">
+  <div class="user-info-card">
+    <div class="user-image">
+      <%= image_tag @user.user_image, class: "image-size" %>
+    </div>
+    <div class="user-details">
+      <h3><%= @user.name %></h3>
+      <div class="user-edit">
+        <% if @user == current_user %>
+          <p>
+            <%= link_to "プロフィール", [:edit, @user], class: "btn btn-primary d-grid gap-2" %>
+          </p>
+          <p>
+            <%= link_to 'アカウント', edit_user_registration_path(@user), class: "btn btn-dark d-grid gap-2" %>
+          </p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+<div class="container mt-4 pt-4">
+  <div class="shop-section new-shops">
+    <h3 class="shop-category"><%= @user.name %>さんが登録した店舗</h3>
+    <div class="shop-list">
+      <% if @user.shops.any? %>
+        <% @user.shops.each do |shop| %>
+          <div class="shop-item">
+            <div class="shop-image">
+              <%= image_tag shop.shop_image %>
+            </div>
+            <div class="shop-details">
+              <h4 class="shop-name"><%= shop.name %></h4>
+              <p class="shop-address"><strong>住所:</strong> <%= shop.address %></p>
+              <p class="shop-taste"><strong>味の系統:</strong> <%= shop.taste %></p>
+              <div class="like-section">
+                <i class="fas fa-heart unlike-btn"></i>
+                <span class="like-count"><%= shop.likes_count %></span>
+              </div>
+              <div class="show-shops">
+                <%= link_to "詳しくはこちら", shop_path(shop) %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% else %>
+        <p class="no-shops">作成した店舗はありません</p>
       <% end %>
     </div>
   </div>
-  <div class="createdShops">
-  <h3><%= @user.name %>さんが登録した店舗</h3>
-  <table class="shopTable">
-    <thead>
-      <tr>
-        <th>店舗画像</th>
-        <th>店舗名</th>
-        <th>住所</th>
-        <th>味の系統</th>
-        <th>いいね数</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% if @user.shops.any? %>
-        <% @user.shops.each do |shop| %>
-          <tr>
-            <td>
-              <%= image_tag shop.shop_image, class: "shopImage" %>
-            </td>
-            <td><%= link_to shop.name, shop_path(shop) %></td>
-            <td><%= shop.address %></td>
-            <td><%= shop.taste %></td>
-            <td><i class="fas fa-heart unlike-btn"></i><span class="likeCount"><%= shop.likes_count %></span></td>
-          </tr>
-        <% end %>
-      <% else %>
-        <tr>
-          <td colspan="5">現在作成した店舗はありません</td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-  </div>
-  <div class="likedShops">
-  <h3><%= @user.name %>さんがいいねした店舗</h3>
-  <table class="shopTable">
-    <thead>
-      <tr>
-        <th>店舗画像</th>
-        <th>店舗名</th>
-        <th>住所</th>
-        <th>味の系統</th>
-        <th>いいね数</th>
-      </tr>
-    </thead>
-    <tbody>
+
+  <div class="shop-section popular-shops">
+    <h3 class="shop-category"><%= @user.name %>さんがいいねした店舗</h3>
+    <div class="shop-list">
       <% if @liked_shops.any? %>
         <% @liked_shops.each do |shop| %>
-          <tr>
-            <td>
-              <%= image_tag shop.shop_image, class: "shopImage" %>
-            </td>
-            <td><%= link_to shop.name, shop_path(shop) %></td>
-            <td><%= shop.address %></td>
-            <td><%= shop.taste %></td>
-            <td><i class="fas fa-heart unlike-btn" ></i><span class="likeCount"><%= shop.likes_count %></span></td>
-          </tr>
+          <div class="shop-item">
+            <div class="shop-image">
+              <%= image_tag shop.shop_image %>
+            </div>
+            <div class="shop-details">
+              <h4 class="shop-name"><%= shop.name %></h4>
+              <p class="shop-address"><strong>住所:</strong> <%= shop.address %></p>
+              <p class="shop-taste"><strong>味の系統:</strong> <%= shop.taste %></p>
+              <div class="like-section">
+                <i class="fas fa-heart unlike-btn"></i>
+                <span class="like-count"><%= shop.likes_count %></span>
+              </div>
+              <div class="show-shops">
+                <%= link_to "詳しくはこちら", shop_path(shop) %>
+              </div>
+            </div>
+          </div>
         <% end %>
       <% else %>
-        <tr>
-          <td colspan="5">現在いいねした店舗はありません</td>
-        </tr>
+        <p class="no-shops">いいねした店舗はありません</p>
       <% end %>
-    </tbody>
-  </table>
+    </div>
   </div>
+</div>
 </div>

@@ -1,24 +1,23 @@
+<div class="contact-container mt-5 pt-5">
 <h2>お問い合わせ内容の確認</h2>
-
-<div class="contactContainer">
-  <div class="contactInfomation">
-    <div class="contactField">
+  <div class="contact-infomation">
+    <div class="contact-field">
       <p>お名前</p>
       <p><%= @contact.name %></p>
     </div>
-    <div class="contactField">
+    <div class="contact-field">
       <p>メールアドレス</p>
       <p><%= @contact.email %></p>
     </div>
-    <div class="contactField">
+    <div class="contact-field">
       <p>件名</p>
       <p><%= @contact.subject %></p>
     </div>
-    <div class="contactField">
+    <div class="contact-field">
       <p>お問い合わせの内容</p>
       <p><%= @contact.message %></p>
     </div>
-    <div class="selectButton">
+    <div class="select-button">
       <div class="formContainer">
         <%= form_with model: @contact, url: back_contacts_path, data: { turbo: false } do |f| %>
           <%= f.hidden_field :name %>

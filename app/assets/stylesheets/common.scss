@@ -16,6 +16,20 @@ h2 {
   text-align: center;
 }
 
+.custom-field {
+  width: 100%;
+  height: auto;
+  font-size: 20px;
+  padding: 10px;
+  margin-bottom: 30px;
+  margin-top: 10px;
+  box-sizing: border-box;
+}
+
+.field {
+  text-align: center;   
+}
+
 .custom_Field {
   width: 300px;
   height: auto;
@@ -33,15 +47,18 @@ h2 {
   box-sizing: border-box;
 }
 
-.custom_Input {
-  margin: 10px 0 10px 50px;
+.custom-input {
+  width: 100%;
+  margin: 20px 0;
   font-size: 18px;
+  box-sizing: border-box;
 }
 
-.selectButton {
+.select-button {
   display: flex;
   justify-content: space-between;
   padding-top: 20px;
+  gap: 20px;
 }
 
 .custom-button {
