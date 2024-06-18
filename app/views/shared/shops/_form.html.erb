@@ -1,44 +1,42 @@
-<div class="shopContainer">
-  <div class="mainContents">
+<div class="main-contents">
   <%= form_with model: @shop do |f| %>
-    <table>
+    <table class="shop-table">
       <tr>
         <th><%= f.label :name, "店舗名" %></th>
-        <td><%= f.text_field :name, class: "custom_Field" %></td>
+        <td><%= f.text_field :name, class: "custom-field" %></td>
       </tr>
       <tr>
         <th><%= f.label :address, "住所" %></th>
-        <td><%= f.text_field :address, class: "custom_Field" %></td>
+        <td><%= f.text_field :address, class: "custom-field" %></td>
       </tr>
       <tr>
         <th><%= f.label :product_name, "商品名" %></th>
-        <td><%= f.text_field :product_name, class: "custom_Field" %></td>
+        <td><%= f.text_field :product_name, class: "custom-field" %></td>
       </tr>
       <tr>
         <th><%= f.label :taste, "味の種類" %></th>
-        <td><%= f.select :taste, [["濃い味系", "濃い味系"], ["あっさり系", "あっさり系"]], { prompt: "選択してください" }, { class: 'custom_Field' } %></td>
+        <td><%= f.select :taste, [["濃い味系", "濃い味系"], ["あっさり系", "あっさり系"]], { prompt: "選択してください" }, { class: "custom-field" } %></td>
       </tr>
       <tr>
         <th><%= f.label :price, "予算" %></th>
-        <td><%= f.text_field :price, class: "custom_Field" %></td>
+        <td><%= f.text_field :price, class: "custom-field" %></td>
       </tr>
       <tr>
         <th><%= f.label :description, "お店の説明" %></th>
-        <td><%= f.text_area :description, class: "custom_Area" %></td>
+        <td><%= f.text_area :description, class: "custom-area" %></td>
       </tr>
       <tr>
         <th>お店の画像</th>
-        <td><%= f.file_field :image, class: "custom_Input" %></td>
+        <td><%= f.file_field :image, class: "custom-input" %></td>
       </tr>
       <tr>
         <th><%= f.label :shop_url, "お店のurl" %></th>
-        <td><%= f.text_field :shop_url, class: "custom_Field" %></td>
+        <td><%= f.text_field :shop_url, class: "custom-field" %></td>
       </tr>
     </table>
-    <div class="shopEdit">
-      <%= link_to "キャンセル", :back, class: "btn btn-secondary custom-button" %>
+    <div class="shop-edit">
+      <%= link_to "キャンセル", root_path, class: "btn btn-secondary custom-button" %>
       <%= f.submit "保存", class: "btn btn-success custom-button" %>
     </div>
   <% end %>
-  </div>
 </div>

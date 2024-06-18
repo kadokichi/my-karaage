@@ -5,7 +5,7 @@
   </div>
 </div>
 <div class="container mt-4 pt-4">
-  <div class="shop-section new-shops">
+  <div class="shop-section">
     <h3 class="shop-category">新着店舗</h3>
     <div class="shop-list">
       <% if @new_shops.any? %>
@@ -15,9 +15,9 @@
               <%= image_tag shop.shop_image %>
             </div>
             <div class="shop-details">
-              <h4 class="shop-name"><%= shop.name %></h4>
-              <p class="shop-address"><strong>住所:</strong> <%= shop.address %></p>
-              <p class="shop-taste"><strong>味の系統:</strong> <%= shop.taste %></p>
+              <h4><%= shop.name %></h4>
+              <p><strong>住所:</strong> <%= shop.address %></p>
+              <p><strong>味の系統:</strong> <%= shop.taste %></p>
               <div class="like-section">
                 <i class="fas fa-heart unlike-btn"></i>
                 <span class="like-count"><%= shop.likes_count %></span>

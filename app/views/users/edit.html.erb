@@ -1,19 +1,21 @@
-<div class="user-container mt-5 pt-5">
-  <h2>プロフィール編集</h2>
-  <div class="user-infomation">
-    <%= form_with model: @user do |f| %>
-      <div class="field">
-        <%= f.label :image, "アイコン画像" %><br />
-        <%= f.file_field :image, class: "custom-input" %>
-      </div>
-      <div class="field">
-        <%= f.label :name, "名前" %><br />
-        <%= f.text_field :name, class: "custom-field" %>
-      </div>
-      <div class="select-button">
-        <%= link_to "キャンセル", @user, class: "btn btn-secondary custom-button" %>
-        <%= f.submit "保存", class: "btn btn-success custom-button" %>
-      </div>
-    <% end %>
+<div class="container">
+  <div class="user-container mt-5 pt-5">
+    <h2>プロフィール編集</h2>
+    <div class="user-infomation">
+      <%= form_with model: @user do |f| %>
+        <div class="field">
+          <%= f.label :image, "アイコン画像" %><br />
+          <%= f.file_field :image, class: "custom-input" %>
+        </div>
+        <div class="field">
+          <%= f.label :name, "名前" %><br />
+          <%= f.text_field :name, class: "custom-field" %>
+        </div>
+        <div class="select-button">
+          <%= link_to "キャンセル", @user, class: "btn btn-secondary custom-button" %>
+          <%= f.submit "保存", class: "btn btn-success custom-button" %>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>

@@ -1,27 +1,31 @@
-<%= render "layouts/search" %>
-<% if params[:sort] == "popular" %>
-  <h2>検索結果 <%= @shops.count.size %>件</h2>
-<% else %>
-  <h2>検索結果 <%=@shops.count %>件</h2>
-<% end %>
-
-<div class="shopAllShow">
-  <% if @shops.any? %>
-  <% @shops.each do |shop| %> 
-    <div class="mainContents">
-      <div class="contentsTitle">
-        <h2><%= shop.name%></h2>
-        <p><i class="fas fa-heart unlike-btn"></i><span class="likeCount"><%= shop.likes_count %></span></p>
-      </div>
-      <p><%= image_tag shop.shop_image, class: "imageSize" %></p>
-      <p><%= shop.address %></p>
-      <p><%= shop.product_name %></p>
-      <p><%= shop.taste %></p>
-      <p><%= shop.description %></p>
-      <p>¥<%= shop.price %></p>
-      <p><%= shop.created_at %></p>
-      <p><%= link_to "詳細はこちら", shop, class: "btn btn-primary custom-button" %></p>  
-    </div>  
-  <% end %>
-  <% end %>
+<div class="container mt-5 pt-5">
+  <%= render "layouts/search" %>
+  <div class="search-result">
+    <% if params[:sort] == "popular" %>
+      <h2>検索結果 <%= @shops.count.size %>件</h2>
+    <% else %>
+      <h2>検索結果 <%=@shops.count %>件</h2>
+    <% end %>
+  </div>
+  <div class="all-shops">
+    <% if @shops.any? %>
+      <% @shops.each do |shop| %> 
+        <div class="main-contents">
+          <div class="shop-details">
+            <p><%= image_tag shop.shop_image, class: "shop-image-size" %></p>
+            <h3><%= shop.name %></h3>
+            <p><strong>住所:</strong> <%= shop.address %></p>
+            <p><strong>味の系統:</strong> <%= shop.taste %></p>
+            <div class="like-section">
+              <i class="fas fa-heart unlike-btn"></i>
+              <span class="like-count"><%= shop.likes_count %></span>
+            </div>
+          </div>
+          <div class="more-link">
+              <%= link_to "詳細はこちら", shop, class: "btn btn-primary d-grid gap-2" %>
+          </div>
+        </div>  
+      <% end %>
+    <% end %>
+  </div>
 </div>

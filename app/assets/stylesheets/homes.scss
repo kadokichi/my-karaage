@@ -22,15 +22,7 @@ body {
   font-weight: bold;
   color: white;
   font-family: "游ゴシック";
-}
-
-.moreLink {
-  margin-top: 20px;
-}
-
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
+  padding-bottom: 10px;
 }
 
 .container h3 {
@@ -46,7 +38,6 @@ body {
 }
 
 .shop-category {
-  font-size: 1.5rem;
   margin-bottom: 20px;
   text-align: center;
 }
@@ -85,15 +76,8 @@ body {
   flex: 1;
 }
 
-.shop-name {
-  font-size: 1.2rem;
-  margin-bottom: 10px;
-}
-
-.shop-address,
-.shop-taste,
-.like-section {
-  margin-bottom: 10px;
+.shop-details h4, .shop-details h3 {
+  margin-bottom: 20px;
 }
 
 .like-section {

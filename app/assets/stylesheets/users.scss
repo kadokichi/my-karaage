@@ -14,8 +14,7 @@
 }
 
 .user-info-card {
-  max-width: 500px;
-  min-width: 300px;
+  max-width: 400px;
   margin: 0 auto;
   padding: 20px;
   background-color: #fff;
@@ -63,34 +62,4 @@
 .devise-shared {
   margin-top: 20px;
   text-align: center;
-}
-
-.shopTable {
-  width: 100%;
-  border-collapse: collapse;
-  table-layout: fixed;
-}
-
-.shopTable th, .shopTable td {
-  border: 1px solid #ddd;
-  padding: 10px;
-  text-align: center;
-  vertical-align: middle;
-}
-
-.shopTable th {
-  background-color: #f2f2f2;
-  font-weight: bold;
-}
-
-.shopTable td {
-  background-color: #fff;
-}
-
-.shopImage {
-  width: 100px;
-  height: auto;
-  display: block;
-  margin: 0 auto;
-  border-radius: 8px;
 }

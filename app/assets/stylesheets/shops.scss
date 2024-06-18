@@ -1,23 +1,24 @@
-.shopContainer {
+.shop-container {
   margin: 50px auto 180px;
-  max-width: 1194px;
+  max-width: 1200px;
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 
-.shopAllShow {
+.all-shops {
   margin: 50px auto 180px;
-  max-width: 1194px;
+  max-width: 1200px;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 30px;
   justify-content: center;
   align-items: start;
-  padding: 0 20px;
+  width: 100%;
 }
 
-.mainContents {
+.main-contents {
   background-color: #f0f0f0;
   padding: 20px;
   border-radius: 8px;
@@ -25,39 +26,48 @@
   font-size: 20px;
   width: 100%;
   max-width: 600px;
+  margin: 10px auto;
 }
 
-.shopInfomations {
+.shop-table {
+  width: 100%;
+}
+
+.shop-table th {
   display: flex;
-  text-align: left;
+  padding-right: 20px;
 }
 
-.shopInfomations p {
-  width: 50%;
+.shop-table td {
+  display: flex;
+}
+
+.shop-ditails p {
   word-wrap: break-word;
 }
 
-.shopEdit {
+.shop-edit {
   display: flex;
   justify-content: space-between;
   padding-top: 20px;
 }
 
-.storeRating {
+.store-rating {
   display: flex;
   justify-content: space-between;
 }
 
-.storeRating i {
+.store-rating i {
   padding-right: 20px;
+}
+
+.store-rating p, .store-rating span {
+  height: 30px;
+  line-height: 30px;
 }
 
 span {
   font-size: 30px;
-}
-
-.likeCount {
-  padding-left: 10px;
 }
 
 .like-btn {
@@ -76,30 +86,33 @@ span {
   padding-right: 20px;
 }
 
-.storeRating p, .storeRating span {
-  height: 30px;
-  line-height: 30px;
+.contents-title h2 {
+  text-align: center;
 }
 
-.contentsTitle {
-  display: flex;
-  justify-content: space-between;
+.search-result {
+  margin-top: 30px;
+  font-size: 40px;
 }
 
-@media (max-width: 1200px) {
-  .shopAllShow {
-    grid-template-columns: repeat(3, 1fr); /* 画面幅が1200px以下のときは3カラム */
-  }
+.search-result h2 {
+  font-size: 40px;
+}
+
+.shop-image-size {
+  width: 100%;
+  height: auto;
+  margin-bottom: 20px;
 }
 
 @media (max-width: 900px) {
-  .shopAllShow {
-    grid-template-columns: repeat(2, 1fr); /* 画面幅が900px以下のときは2カラム */
+  .all-shops {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (max-width: 600px) {
-  .shopAllShow {
-    grid-template-columns: 1fr; /* 画面幅が600px以下のときは1カラム */
+  .all-shops {
+    grid-template-columns: 1fr;
   }
 }
