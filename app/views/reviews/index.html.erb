@@ -1,44 +1,48 @@
-<h2><%= @shop.name %>のレビュー</h2>
-<div class="reviewsShow">
-<% if @reviews.present? %>
-  <div class="reviewsBox">
-    <% @reviews.each do |review| %>
-      <div class="reviewCard">
-        <div class="reviewHeader">
-          <p class="reviewUser"><%= review.user.name %></p>
-          <p class="reviewScore">評価: <%= review.score %></p>
-        </div>
-        <div class="reviewContent">
-          <p><%= review.content %></p>
-          <div class="reviewsNice">
-            <% if review.niced_by?(current_user) %>
-              <%= link_to shop_review_nice_path(@shop, review), method: :delete, data: { turbo_method: :delete } do %>
-                <i class="fas fa-heart small-unlike-btn"></i><span class="likeCount"><%= review.nices_count %></span>
-              <% end %>
-            <% else %>
-              <%= link_to shop_review_nice_path(@shop, review), method: :post, data: { turbo_method: :post } do %>
-                <i class="far fa-heart small-like-btn" ></i><span class="likeCount"><%= review.nices_count %></span>
-              <% end %>
-            <% end %>
-          </div>
-        </div>
-        <% if review.user == current_user %>
-          <div class="reviewActions">
-            <%= link_to "編集", edit_shop_review_path(@shop, review), class: "btn btn-primary" %>
-            <%= link_to "削除", shop_review_path(@shop, review),
-                method: :delete, data: { turbo_method: :delete, turbo_confirm: "口コミを削除してよろしいですか？" },
-                class: "btn btn-danger" %>
+<div class="container mt-5 pt-5">
+  <h2><%= @shop.name %>のレビュー</h2>
+  <div class="review-container">
+    <% if @reviews.present? %>
+      <div class="reviews-box">
+        <% @reviews.each do |review| %>
+          <div class="review-card">
+            <div class="review-header">
+              <p class="review-user"><%= review.user.name %></p>
+              <p class="review-score">評価: <%= review.score %></p>
+            </div>
+            <div class="review-content">
+              <p><%= review.content %></p>
+              <div class="reviews-operation">
+                <div class="reviews-nice">
+                  <% if review.niced_by?(current_user) %>
+                    <%= link_to shop_review_nice_path(@shop, review), method: :delete, data: { turbo_method: :delete } do %>
+                      <i class="fas fa-heart small-unlike-btn"></i><span class="like-count"><%= review.nices_count %></span>
+                    <% end %>
+                  <% else %>
+                    <%= link_to shop_review_nice_path(@shop, review), method: :post, data: { turbo_method: :post } do %>
+                      <i class="far fa-heart small-like-btn" ></i><span class="like-count"><%= review.nices_count %></span>
+                    <% end %>
+                  <% end %>
+                </div>
+                <% if review.user == current_user %>
+                  <div class="review-actions">
+                    <%= link_to "編集", edit_shop_review_path(@shop, review), class: "btn btn-primary" %>
+                    <%= link_to "削除", shop_review_path(@shop, review),
+                        method: :delete, data: { turbo_method: :delete, turbo_confirm: "口コミを削除してよろしいですか？" },
+                        class: "btn btn-danger" %>
+                  </div>
+                <% end %>
+              </div>
+            </div>
           </div>
         <% end %>
       </div>
+    <% else %>
+      <div class="no-review">
+        <h3>レビューがありません</h3>
+      </div>
+    <% end %>
+    <% if user_signed_in? && !@reviews.any? { |review| review.user == current_user } %>
+      <%= link_to "レビューを書く", new_shop_review_path(@shop) %>
     <% end %>
   </div>
-<% else %>
-  <div class="noReview">
-    <h3>レビューがありません</h3>
-  </div>
-<% end %>
-<% if user_signed_in? && !@reviews.any? { |review| review.user == current_user } %>
-  <%= link_to "レビューを書く", new_shop_review_path(@shop) %>
-<% end %>
 </div>
