@@ -6,7 +6,7 @@ class ContactsController < ApplicationController
   def confirm
     @contact = Contact.new(contact_params)
     if @contact.invalid?
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -21,7 +21,7 @@ class ContactsController < ApplicationController
       ContactMailer.send_mail(@contact).deliver_now
       redirect_to done_contacts_path
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 

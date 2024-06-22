@@ -1,16 +1,20 @@
 .contact-container {
-  margin: 50px auto 180px;
+  margin: 150px auto 180px;
   max-width: 1200px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
 }
 
 .contact-container h2 {
   text-align: center;
   margin-bottom: 30px;
   font-size: 30px;
+}
+
+.contact-field {
+  font-weight: bold;
+}
+
+.normal-text {
+  font-weight: normal;
 }
 
 .contact-infomation {
@@ -21,6 +25,7 @@
   font-size: 20px;
   width: 100%;
   max-width: 600px;
+  margin: auto;
 }
 
 .thank-you-container {

@@ -4,10 +4,16 @@ ja:
       shop: ショップ
       user: ユーザー
       review: レビュー
+      contact: お問い合わせ
     attributes:
       review:
         score: お店の評価
         content: 口コミ
+      contact:
+        name: お名前
+        email: メールアドレス
+        subject: 件名
+        message: お問い合わせの内容
       shop:
         name: 店舗名
         address: 住所

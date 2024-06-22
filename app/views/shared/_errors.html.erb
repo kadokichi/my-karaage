@@ -1,5 +1,5 @@
 <% errors = [] %>
-<% [@shop, @user, @review].each do |object| %>
+<% [@shop, @user, @review, @contact].each do |object| %>
   <% if object && object.errors.any? %>
     <% object.errors.full_messages.each do |message| %>
       <% errors << message %>

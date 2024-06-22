@@ -1,6 +1,7 @@
 <div class="container">
-  <div class="contact-container mt-5 pt-5">
+  <div class="contact-container">
     <h2>お問い合わせ</h2>
+    <%= render "shared/errors" %>
     <div class="contact-infomation">
       <%= form_with model: @contact, url: confirm_contacts_path, local: true, data: { turbo: false } do |f| %>
         <div class="contact-field">
