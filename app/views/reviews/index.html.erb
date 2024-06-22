@@ -41,8 +41,10 @@
         <h3>レビューがありません</h3>
       </div>
     <% end %>
+  </div>
+  <div class="fixed-button">
     <% if user_signed_in? && !@reviews.any? { |review| review.user == current_user } %>
-      <%= link_to "レビューを書く", new_shop_review_path(@shop) %>
+      <%= link_to "レビューを書く", new_shop_review_path(@shop), class: "btn btn-primary btn-lg" %>
     <% end %>
   </div>
 </div>
