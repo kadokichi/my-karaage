@@ -4,6 +4,8 @@ class Review < ApplicationRecord
   has_many :nices, dependent: :destroy
 
   validates :user_id, uniqueness: { scope: :shop_id }
+  validates :score, presence: true
+  validates :content, presence: true, length: { maximum: 150 }
 
   def niced_by?(user)
     return false unless user

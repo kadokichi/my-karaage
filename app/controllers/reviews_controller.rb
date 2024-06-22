@@ -23,7 +23,7 @@ class ReviewsController < ApplicationController
     if @review.save
       redirect_to shop_path(@shop)
     else
-      render "new"
+      render "new", status: :unprocessable_entity
     end
   end
 
@@ -33,11 +33,12 @@ class ReviewsController < ApplicationController
   end
 
   def update
+    @shop = Shop.find(params[:shop_id])
     @review = Review.find(params[:id])
     if @review.update(review_params)
       redirect_to shop_path(@review.shop)
     else
-      render 'edit'
+      render "edit", status: :unprocessable_entity
     end
   end
   

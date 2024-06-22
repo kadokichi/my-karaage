@@ -1,0 +1,18 @@
+<% errors = [] %>
+<% [@shop, @user, @review].each do |object| %>
+  <% if object && object.errors.any? %>
+    <% object.errors.full_messages.each do |message| %>
+      <% errors << message %>
+    <% end %>
+  <% end %>
+<% end %>
+<% if errors.any? %>
+  <div class="error-messages">
+    <h3>以下のエラーがあります</h3>
+    <ul>
+      <% errors.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

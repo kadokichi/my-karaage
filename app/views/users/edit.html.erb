@@ -1,6 +1,7 @@
 <div class="container">
   <div class="user-container mt-5 pt-5">
     <h2>プロフィール編集</h2>
+    <%= render "shared/errors" %>
     <div class="user-infomation">
       <%= form_with model: @user do |f| %>
         <div class="field">

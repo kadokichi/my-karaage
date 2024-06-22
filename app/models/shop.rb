@@ -4,6 +4,13 @@ class Shop < ApplicationRecord
   has_many :reviews, dependent: :destroy
   has_many :likes, dependent: :destroy
 
+  validates :name, presence: true, length: { maximum: 30 }, uniqueness: { case_sensitive: false }
+  validates :address, presence: true, length: { maximum: 50 }
+  validates :price, presence: true, numericality: { only_integer: true }, length: { minimum: 2, maximum: 5 }
+  validates :taste, presence: true
+  validates :description, presence: true, length: { maximum: 150 }
+  validates :product_name, presence: true, length: { maximum: 20 }
+
   def shop_image
     if image.attached?
       image

@@ -20,7 +20,7 @@ class ShopsController < ApplicationController
     if @shop.save
       redirect_to root_path
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -33,7 +33,7 @@ class ShopsController < ApplicationController
     if @shop.update(shop_params)
       redirect_to @shop
     else
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
     

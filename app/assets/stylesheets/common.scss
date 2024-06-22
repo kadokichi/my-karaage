@@ -17,7 +17,7 @@ a {
 }
 
 h2 {
-  font-size: 26px;
+  font-size: 35px;
   padding: 20px 0;
   text-align: center;
   font-weight: bold;
@@ -38,7 +38,8 @@ strong {
 }
 
 .field {
-  text-align: center;   
+  text-align: center;
+  width: 100%;
 }
 
 .custom-input {
@@ -69,4 +70,39 @@ strong {
   width: 150px;
   font-size: 20px;
   color: white;
+}
+
+.error-messages {
+  background-color: yellow;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+  padding: 10px;
+  border-radius: 5px;
+  margin:0 auto 20px;
+  max-width: 600px;
+  font-weight: bold;
+}
+
+.error-messages h3 {
+  margin-top: 0;
+}
+
+.error-messages ul {
+  padding: 10px;
+}
+
+.error-messages li {
+  margin: 5px 0;
+}
+
+.field_with_errors {
+  display: contents;
+}
+
+.field_with_errors input,
+.field_with_errors textarea,
+.field_with_errors select {
+  border: 2px solid red;
+  width: 100%;
+  box-sizing: border-box;
 }

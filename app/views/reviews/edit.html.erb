@@ -1,5 +1,6 @@
 <div class="container mt-5 pt-5">
   <h2>レビューを編集する</h2>
+  <%= render "shared/errors" %>
   <div class="review-container">
     <div class="review-infomation">
       <%= form_with model: @review, url: shop_review_path(@shop, @review) do |f| %>
