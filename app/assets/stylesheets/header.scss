@@ -66,6 +66,18 @@
   font-weight: bold;
 }
 
+.flash-message {
+  background-color: rgb(24, 120, 193);
+  text-align: center;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  color: white;
+  height: auto;
+  font-size: 25px;
+  margin: 0 auto;
+}
+
 @media (min-width: 768px) {
   .dropdown {
     display: none;

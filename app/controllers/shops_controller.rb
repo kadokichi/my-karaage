@@ -18,7 +18,7 @@ class ShopsController < ApplicationController
   def create
     @shop = current_user.shops.build(shop_params)
     if @shop.save
-      redirect_to root_path
+      redirect_to root_path, notice: "新しい店舗を登録しました!"
     else
       render :new, status: :unprocessable_entity
     end
@@ -31,7 +31,7 @@ class ShopsController < ApplicationController
   def update
     @shop = current_user.shops.find(params[:id])
     if @shop.update(shop_params)
-      redirect_to @shop
+      redirect_to @shop, notice: "店舗の情報を更新しました!"
     else
       render :edit, status: :unprocessable_entity
     end
@@ -40,7 +40,7 @@ class ShopsController < ApplicationController
   def destroy
     @shop = current_user.shops.find(params[:id])
     @shop.destroy
-    redirect_to root_path
+    redirect_to root_path, notice: "店舗を削除しました!"
   end
 
   def search
