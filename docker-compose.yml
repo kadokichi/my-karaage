@@ -14,10 +14,8 @@ services:
     image: postgres:14
     ports:
       - 5432:5432
-    environment:
-      - POSTGRES_PASSWORD=mypassword
-      - POSTGRES_USER=postgres
-      - POSTGRES_DB=appdb
+    env_file:
+      - .env
     volumes:
       - db-storage:/var/lib/postgresql/data
       - ./db/initdb:/docker-entrypoint-initdb.d
