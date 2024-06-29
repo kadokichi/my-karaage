@@ -109,3 +109,20 @@ strong {
   width: 100%;
   box-sizing: border-box;
 }
+
+.breadcrumb {
+  font-size: 20px;
+  padding: 10px 10px;
+  background-color: #f0f0f0;
+  width: fit-content;
+  border-radius: 10px;
+}
+.breadcrumb li {
+  display: flex;
+  vertical-align: middle;
+}
+
+.breadcrumb-items::after {
+  content: ' > ';
+  padding: 0 10px;
+}

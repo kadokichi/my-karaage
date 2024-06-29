@@ -1,0 +1,14 @@
+<% if elements.present? %>
+  <ul class="breadcrumb">
+    <% elements[0..-2].each do |element| %>
+      <li class="breadcrumb-items">
+        <% if element.path.present? %>
+          <a href="<%= element.path %>"><%= element.name %></a>
+        <% else %>
+          <%= element.name %>
+        <% end %>
+      </li>
+    <% end %>
+    <li><%= elements.last.name %></li>
+  </ul>
+<% end %>

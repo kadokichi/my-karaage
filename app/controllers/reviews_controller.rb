@@ -1,5 +1,6 @@
 class ReviewsController < ApplicationController
   before_action :authenticate_user!, except: [:index]
+  before_action :set_review_breadcrumbs, only: [:index, :new, :edit]
 
   def index
     @shop = Shop.find(params[:shop_id])
@@ -13,6 +14,7 @@ class ReviewsController < ApplicationController
   def new
     @shop = Shop.find(params[:shop_id])
     @review = @shop.reviews.build
+    add_breadcrumb "レビューを書く"
   end
   
   def create
@@ -30,6 +32,7 @@ class ReviewsController < ApplicationController
   def edit
     @shop = Shop.find(params[:shop_id])
     @review = Review.find(params[:id])
+    add_breadcrumb "レビューの編集"
   end
 
   def update
@@ -52,5 +55,12 @@ class ReviewsController < ApplicationController
     
   def review_params
     params.require(:review).permit(:content, :score)
+  end
+
+  def set_review_breadcrumbs
+    add_breadcrumb "検索結果", search_shops_path
+    @shop = Shop.find(params[:shop_id])
+    add_breadcrumb @shop.name, shop_path(@shop)
+    add_breadcrumb "#{@shop.name} のレビュー", shop_reviews_path(@shop)
   end
 end

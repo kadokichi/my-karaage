@@ -1,5 +1,6 @@
 class ShopsController < ApplicationController
   before_action :authenticate_user!, except: [:show, :index, :search]
+  before_action :set_shop_breadcrumbs, only: [:search, :show, :edit]
 
   def index
     @shops = Shop.includes(image_attachment: :blob).all
@@ -9,10 +10,12 @@ class ShopsController < ApplicationController
     @shop = Shop.find(params[:id])
     @reviews = @shop.reviews
     @average_score = @reviews.average(:score)
+    add_breadcrumb @shop.name
   end
 
   def new
     @shop = current_user.shops.build
+    add_breadcrumb "お店を登録"
   end
     
   def create
@@ -26,6 +29,8 @@ class ShopsController < ApplicationController
 
   def edit
     @shop = current_user.shops.find(params[:id])
+    add_breadcrumb @shop.name, shop_path(@shop)
+    add_breadcrumb "店舗の編集"
   end
 
   def update
@@ -68,7 +73,7 @@ class ShopsController < ApplicationController
         @shops = @shops.left_joins(:likes).group(:id).order('COUNT(likes.id) DESC')
       end
     end
-    
+
     render :index
   end
     
@@ -76,5 +81,9 @@ class ShopsController < ApplicationController
     
   def shop_params
     params.require(:shop).permit(:name, :address, :price, :taste, :description, :product_name, :shop_url, :image)
+  end
+
+  def set_shop_breadcrumbs
+    add_breadcrumb "検索結果", search_shops_path
   end
 end

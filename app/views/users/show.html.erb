@@ -1,5 +1,7 @@
-<div class="user-container">
-  <div class="container">
+<div class="container">
+  <div class="user-container">
+    <%= render_breadcrumbs builder: ::CustomBreadcrumbsBuilder %>
+    <h2>ユーザー詳細</h2>
     <div class="user-info-card">
       <div class="user-image">
         <%= image_tag @user.user_image, class: "image-size" %>

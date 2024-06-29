@@ -1,5 +1,7 @@
 <div class="container">
   <div class="shop-container">
+    <%= render_breadcrumbs builder: ::CustomBreadcrumbsBuilder %>
+    <h2>お店の詳細</h2>
     <div class="main-contents">
       <h2><%= @shop.name%></h2>
       <%= image_tag @shop.shop_image, class: "shop-image-size" %>
