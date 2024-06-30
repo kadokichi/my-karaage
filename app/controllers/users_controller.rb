@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   def edit
     @user = User.find(params[:id])
     add_breadcrumb @user.name, user_path(@user)
-    add_breadcrumb "編集"
+    add_breadcrumb "プロフィール編集"
   end
 
   def show
