@@ -47,5 +47,47 @@
         <% end %>
       </div>
     </div>
+    <div class="show-map">
+      <h3>店舗の周辺地図</h3>
+      <p>*存在しない住所の場合は東京駅が表示されます</p>
+      <div id="map"></div>
+      <script>
+        function initMap(){
+          const defaultPosition = { lat: 35.6804, lng: 139.7690 };
+
+          const latitude = <%= @shop.latitude.present? ? @shop.latitude : 'null' %>;
+          const longitude = <%= @shop.longitude.present? ? @shop.longitude : 'null' %>;
+
+          const mapPosition = { lat: latitude || defaultPosition.lat, lng: longitude || defaultPosition.lng };
+
+          const map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 15,
+            center: mapPosition
+          });
+
+          const transitLayer = new google.maps.TransitLayer();
+          transitLayer.setMap(map);
+
+          const contentString = '<%= j(@shop.address.present? ? "【住所】#{@shop.address}" : "") %>';
+
+          const infowindow = new google.maps.InfoWindow({
+            content: contentString
+          });
+
+          const marker = new google.maps.Marker({
+            position: mapPosition,
+            map: map,
+            title: contentString
+          });
+
+          if (contentString !== '') {
+            marker.addListener('click', function(){
+              infowindow.open(map, marker);
+            });
+          }
+        }
+      </script>
+      <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap" async defer></script>
+    </div>
   </div>
 </div>

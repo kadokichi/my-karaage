@@ -3,6 +3,8 @@ class Shop < ApplicationRecord
   belongs_to :user
   has_many :reviews, dependent: :destroy
   has_many :likes, dependent: :destroy
+  geocoded_by :address
+  after_validation :geocode
 
   validates :name, presence: true, length: { maximum: 30 }, uniqueness: { case_sensitive: false }
   validates :address, presence: true, length: { maximum: 50 }
