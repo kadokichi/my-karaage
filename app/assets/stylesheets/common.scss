@@ -126,3 +126,18 @@ strong {
   content: ' > ';
   padding: 0 10px;
 }
+
+.required::after {
+  content: "必須";
+  background-color: #f0ad4e;
+  color: #fff;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 0 5px;
+  margin-left: 5px;
+  border-radius: 3px;
+  vertical-align: middle;
+  white-space: nowrap;
+  height: 20px;
+  line-height: 20px;
+}

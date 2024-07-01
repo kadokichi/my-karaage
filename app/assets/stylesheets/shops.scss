@@ -34,9 +34,16 @@
   width: 100%;
 }
 
+.note {
+  font-size: 15px;
+  text-align: center;
+  color: red;
+  font-weight: bold;
+}
+
 .shop-table th {
   display: flex;
-  padding-right: 20px;
+  align-items: center;
 }
 
 .shop-table td {

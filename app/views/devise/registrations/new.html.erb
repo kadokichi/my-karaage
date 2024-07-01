@@ -5,19 +5,19 @@
     <div class="user-infomation">
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
         <div class="field">
-          <%= f.label :name, "ユーザー名" %> <br />
+          <%= f.label :name, "ユーザー名" %><span class="required"></span><br />
           <%= f.text_field :name, class: "custom-field" %>
         </div>
         <div class="field">
-          <%= f.label :email, "メールアドレス" %><br />
+          <%= f.label :email, "メールアドレス" %><span class="required"></span><br />
           <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "custom-field" %>
         </div>
         <div class="field">
-          <%= f.label :password, "パスワード" %><br />
+          <%= f.label :password, "パスワード" %><span class="required"></span><br />
           <%= f.password_field :password, autocomplete: "new-password", class: "custom-field" %>
         </div>
         <div class="field">
-          <%= f.label :password_confirmation, "パスワード確認" %><br />
+          <%= f.label :password_confirmation, "パスワード確認" %><span class="required"></span><br />
           <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "custom-field" %>
         </div>
         <div class="select-button">

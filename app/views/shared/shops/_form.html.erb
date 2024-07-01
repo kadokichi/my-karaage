@@ -1,29 +1,30 @@
 <%= render "shared/errors" %>
 <div class="main-contents">
+  <p class="note">*チェーン店(複数店舗)の場合は店舗名に◯◯駅前店などの店舗情報の入力をお願い致します。</p>
   <%= form_with model: @shop do |f| %>
     <table class="shop-table">
       <tr>
-        <th><%= f.label :name, "店舗名" %></th>
+        <th class="required"><%= f.label :name, "店舗名" %></th>
         <td><%= f.text_field :name, class: "custom-field" %></td>
       </tr>
       <tr>
-        <th><%= f.label :address, "住所" %></th>
+        <th class="required"><%= f.label :address, "住所" %></th>
         <td><%= f.text_field :address, class: "custom-field" %></td>
       </tr>
       <tr>
-        <th><%= f.label :product_name, "商品名" %></th>
+        <th class="required"><%= f.label :product_name, "商品名" %></th>
         <td><%= f.text_field :product_name, class: "custom-field" %></td>
       </tr>
       <tr>
-        <th><%= f.label :taste, "味の種類" %></th>
+        <th class="required"><%= f.label :taste, "味の種類" %></th>
         <td><%= f.select :taste, [["濃い味系", "濃い味系"], ["あっさり系", "あっさり系"]], { prompt: "選択してください" }, { class: "custom-field" } %></td>
       </tr>
       <tr>
-        <th><%= f.label :price, "予算" %></th>
+        <th class="required"><%= f.label :price, "予算" %></th>
         <td><%= f.text_field :price, class: "custom-field" %></td>
       </tr>
       <tr>
-        <th><%= f.label :description, "お店の説明" %></th>
+        <th class="required"><%= f.label :description, "お店の説明" %></th>
         <td><%= f.text_area :description, class: "custom-area" %></td>
       </tr>
       <tr>

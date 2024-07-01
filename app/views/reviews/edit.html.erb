@@ -7,11 +7,11 @@
       <%= form_with model: @review, url: shop_review_path(@shop, @review) do |f| %>
         <table class="review-table">
           <tr>
-            <th><%= f.label :score, "お店の評価" %></th>
+            <th class="required"><%= f.label :score, "お店の評価" %></th>
             <td><%= f.select :score, (1..5).map { |i| [i, i] }, { prompt: "選択してください" }, { class: "custom-field" } %></td>
           </tr>
           <tr>
-            <th><%= f.label :content, "口コミ" %></th>
+            <th class="required"><%= f.label :content, "口コミ" %></th>
             <td><%= f.text_area :content, class: "custom-area" %></td>
           </tr>
         </table>
