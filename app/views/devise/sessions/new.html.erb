@@ -26,13 +26,15 @@
           </div>
         <% end %>
         <div class="select-button">
-          <%= link_to "キャンセル", :back, class: "btn btn-secondary custom-button" %>
+          <%= link_to "キャンセル", root_path, class: "btn btn-secondary custom-button" %>
           <%= f.submit "ログイン", class: "btn btn-success custom-button" %>
         </div>
       <% end %>
-      <div class="devise-shared">
-        <%= render "devise/shared/links" %>
-      </div>
+      <% unless request.path == '/admins/sign_in' %>
+        <div class="devise-shared">
+          <%= render "devise/shared/links" %>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>
