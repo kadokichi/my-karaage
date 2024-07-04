@@ -7,7 +7,7 @@
         <% @reviews.each do |review| %>
           <div class="review-card">
             <div class="review-header">
-              <p class="review-user"><%= review.user.name %></p>
+              <p class="review-user"><%= link_to review.user.name, user_path(review.user) %></p>
               <p class="review-score">評価: <%= review.score %></p>
             </div>
             <div class="review-content">

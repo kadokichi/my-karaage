@@ -5,7 +5,7 @@ class ReviewsController < ApplicationController
   def index
     @shop = Shop.find(params[:shop_id])
     if user_signed_in?
-      @reviews = @shop.reviews.includes(:user, :nices)
+      @reviews = @shop.reviews.includes(:user, :nices).order(created_at: :desc)
     else
       @reviews = @shop.reviews.includes(:user)
     end
