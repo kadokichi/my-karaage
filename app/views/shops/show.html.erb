@@ -62,7 +62,8 @@
 
           const map = new google.maps.Map(document.getElementById('map'), {
             zoom: 15,
-            center: mapPosition
+            center: mapPosition,
+            mapId: "DEMO_MAP_ID"
           });
 
           const transitLayer = new google.maps.TransitLayer();
@@ -74,7 +75,7 @@
             content: contentString
           });
 
-          const marker = new google.maps.Marker({
+          const marker = new google.maps.marker.AdvancedMarkerElement({
             position: mapPosition,
             map: map,
             title: contentString
@@ -87,7 +88,7 @@
           }
         }
       </script>
-      <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap" async defer></script>
+      <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&loading=async&callback=initMap&v=weekly&libraries=marker"></script>
     </div>
   </div>
 </div>

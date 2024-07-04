@@ -38,7 +38,7 @@
                   <span class="like-count"><%= shop.likes_count %></span>
                 </div>
                 <div class="show-shops">
-                  <%= link_to "詳しくはこちら", shop_path(shop) %>
+                  <%= link_to "詳しくはこちら", shop_path(shop), data: { turbo: false } %>
                 </div>
               </div>
             </div>
@@ -66,7 +66,7 @@
                   <span class="like-count"><%= shop.likes_count %></span>
                 </div>
                 <div class="show-shops">
-                  <%= link_to "詳しくはこちら", shop_path(shop) %>
+                  <%= link_to "詳しくはこちら", shop_path(shop), data: { turbo: false } %>
                 </div>
               </div>
             </div>
