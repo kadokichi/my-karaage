@@ -9,7 +9,7 @@
       <div class="user-details">
         <h3><%= @user.name %></h3>
         <div class="user-edit">
-          <% if @user == current_user %>
+          <% if @user == current_user && @user.email != "guest@example.com" %>
             <p>
               <%= link_to "プロフィール", [:edit, @user], class: "btn btn-primary d-grid gap-2" %>
             </p>

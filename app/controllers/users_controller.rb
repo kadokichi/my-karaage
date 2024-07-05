@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :authorize_user, only: [:edit, :update]
+  before_action :ensure_normal_user, only: [:edit, :update, :destroy]
 
   def edit
     @user = User.find(params[:id])
@@ -31,5 +32,11 @@ class UsersController < ApplicationController
   def authorize_user
     @user = User.find(params[:id])
     redirect_to root_path unless @user == current_user
+  end
+
+  def ensure_normal_user
+    if current_user.email == "guest@example.com"
+      redirect_to root_path, notice: "ゲストユーザーの情報は変更できません。"
+    end
   end
 end
