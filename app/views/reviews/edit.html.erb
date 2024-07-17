@@ -1,0 +1,25 @@
+<div class="container mt-5 pt-5">
+  <%= render_breadcrumbs builder: ::CustomBreadcrumbsBuilder %>
+  <h2>レビューを編集する</h2>
+  <%= render "shared/errors" %>
+  <div class="review-container">
+    <div class="review-infomation">
+      <%= form_with model: @review, url: shop_review_path(@shop, @review) do |f| %>
+        <table class="review-table">
+          <tr>
+            <th class="required"><%= f.label :score, "お店の評価" %></th>
+            <td><%= f.select :score, (1..5).map { |i| [i, i] }, { prompt: "選択してください" }, { class: "custom-field" } %></td>
+          </tr>
+          <tr>
+            <th class="required"><%= f.label :content, "口コミ" %></th>
+            <td><%= f.text_area :content, class: "custom-area" %></td>
+          </tr>
+        </table>
+        <div class="select-button">
+          <%= link_to "キャンセル", @shop, class: "btn btn-secondary custom-button" %>
+          <%= f.submit "保存", class: "btn btn-success custom-button" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

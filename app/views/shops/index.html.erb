@@ -1,0 +1,32 @@
+<div class="container mt-5 pt-5">
+  <%= render_breadcrumbs builder: ::CustomBreadcrumbsBuilder %>
+  <%= render "layouts/search" %>
+  <div class="search-result">
+    <% if params[:sort] == "popular" %>
+      <h2>検索結果 <%= @shops.count.size %>件</h2>
+    <% else %>
+      <h2>検索結果 <%=@shops.count %>件</h2>
+    <% end %>
+  </div>
+  <div class="all-shops">
+    <% if @shops.any? %>
+      <% @shops.each do |shop| %> 
+        <div class="main-contents">
+          <div class="shop-details">
+            <p><%= image_tag shop.shop_image, class: "shop-image-size" %></p>
+            <h3><%= shop.name %></h3>
+            <p><strong>住所:</strong> <%= shop.address %></p>
+            <p><strong>味の系統:</strong> <%= shop.taste %></p>
+            <div class="like-section">
+              <i class="fas fa-heart unlike-btn"></i>
+              <span class="like-count"><%= shop.likes_count %></span>
+            </div>
+          </div>
+          <div class="more-link">
+              <%= link_to "詳細はこちら", shop, data: { turbo: false }, class: "btn btn-primary d-grid gap-2" %>
+          </div>
+        </div>  
+      <% end %>
+    <% end %>
+  </div>
+</div>

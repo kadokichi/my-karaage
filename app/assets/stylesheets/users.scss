@@ -1,0 +1,60 @@
+.user-container {
+  margin: 150px auto 180px;
+  max-width: 1200px;
+}
+
+.user-container h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 30px;
+}
+
+.user-info-card {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.user-image {
+  margin-bottom: 15px;
+}
+
+.image-size {
+  width: 100%;
+  height: auto;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.user-details h3 {
+  margin: 20px;
+  font-size: 25px;
+  color: #333;
+}
+
+.user-edit p {
+  margin: 10px 0;
+}
+
+.user-infomation {
+  background-color: #f0f0f0;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  font-size: 20px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  max-width: 600px;
+  width: 100%;
+}
+
+.devise-shared {
+  margin-top: 20px;
+  text-align: center;
+}

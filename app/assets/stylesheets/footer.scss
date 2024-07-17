@@ -1,0 +1,19 @@
+.footer {
+  align-items: center;
+  background-color: white;
+  display: flex;
+  height: 200px;
+  justify-content: space-between;
+  font-size: 20px;
+  padding: 0 30px;
+  width: 100%;
+  bottom: 0;
+}
+@media screen and (max-width: 767px) {
+  .footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+  }
+}

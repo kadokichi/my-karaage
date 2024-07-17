@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="user-container">
+    <h2>新規アカウント作成</h2>
+    <%= render "shared/errors" %>
+    <div class="user-infomation">
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <div class="field">
+          <%= f.label :name, "ユーザー名" %><span class="required"></span><br />
+          <%= f.text_field :name, class: "custom-field" %>
+        </div>
+        <div class="field">
+          <%= f.label :email, "メールアドレス" %><span class="required"></span><br />
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "custom-field" %>
+        </div>
+        <div class="field">
+          <%= f.label :password, "パスワード" %><span class="required"></span><br />
+          <%= f.password_field :password, autocomplete: "new-password", class: "custom-field" %>
+        </div>
+        <div class="field">
+          <%= f.label :password_confirmation, "パスワード確認" %><span class="required"></span><br />
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "custom-field" %>
+        </div>
+        <div class="select-button">
+          <%= link_to "キャンセル", :back, class: "btn btn-secondary custom-button" %>
+          <%= f.submit "新規作成", class: "btn btn-success custom-button" %>
+        </div>
+      <% end %>
+      <div class="devise-shared">
+        <%= render "devise/shared/links" %>
+      </div>
+    </div>
+  </div>
+</div>

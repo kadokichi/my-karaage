@@ -1,0 +1,145 @@
+.shop-container {
+  margin: 150px auto 180px;
+  max-width: 1200px;
+  width: 100%;
+}
+
+.all-shops {
+  margin: 50px auto 180px;
+  max-width: 1200px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  justify-content: center;
+  align-items: start;
+  width: 100%;
+}
+
+.main-contents {
+  background-color: #f0f0f0;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  font-size: 20px;
+  width: 100%;
+  max-width: 600px;
+  margin: 10px auto;
+}
+
+.main-contents h2 {
+  margin-bottom: 20px;
+}
+
+.shop-table {
+  width: 100%;
+}
+
+.note {
+  font-size: 15px;
+  text-align: center;
+  color: red;
+  font-weight: bold;
+}
+
+.shop-table th {
+  display: flex;
+  align-items: center;
+}
+
+.shop-table td {
+  display: flex;
+}
+
+.shop-ditails p {
+  word-wrap: break-word;
+}
+
+.shop-edit {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 20px;
+}
+
+.store-rating {
+  display: flex;
+  justify-content: space-between;
+}
+
+.store-rating i {
+  padding-right: 20px;
+}
+
+.store-rating p, .store-rating span {
+  height: 30px;
+  line-height: 30px;
+}
+
+span {
+  font-size: 30px;
+}
+
+.like-btn {
+  width: 25px;
+  height: 30px;
+  font-size: 30px;
+  color: #808080; 
+  padding-right: 20px;
+}
+ 
+.unlike-btn {
+  width: 25px;
+  height: 30px;
+  font-size: 30px;
+  color: red;
+  padding-right: 20px;
+}
+
+.contents-title h2 {
+  text-align: center;
+}
+
+.search-result {
+  margin-top: 30px;
+  font-size: 40px;
+}
+
+.search-result h2 {
+  font-size: 40px;
+}
+
+.shop-image-size {
+  width: 100%;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+.show-map {
+  text-align: center;
+  margin: 100px auto 0;
+  max-width: 600px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.show-map p {
+  margin: 30px 0;
+  font-weight: bold;
+}
+
+#map {
+  height: 500px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+@media (max-width: 900px) {
+  .all-shops {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .all-shops {
+    grid-template-columns: 1fr;
+  }
+}

@@ -17,9 +17,9 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  host: db
-  username: postgres
-  password: mypassword
+  host: <%= ENV['DB_HOST'] %>
+  username: <%= ENV['DB_USERNAME'] %>
+  password: <%= ENV['DB_PASSWORD'] %>
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: 5
@@ -84,6 +84,6 @@ test:
 #
 production:
   <<: *default
-  database: my_karaage_production
-  username: my_karaage
+  database: <%= ENV['PRODUCTION_DATABASE_NAME'] %>
+  username: <%= ENV['PRODUCTION_DATABASE_USERNAME'] %>
   password: <%= ENV["MY_KARAAGE_DATABASE_PASSWORD"] %>

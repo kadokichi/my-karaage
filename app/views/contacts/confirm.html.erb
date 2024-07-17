@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="contact-container">
+    <h2>お問い合わせ内容の確認</h2>
+    <div class="contact-infomation">
+      <div class="contact-field">
+        <p>お名前:</p>
+        <p class="normal-text"><%= @contact.name %></p>
+      </div>
+      <div class="contact-field">
+        <p>メールアドレス:</p>
+        <p class="normal-text"><%= @contact.email %></p>
+      </div>
+      <div class="contact-field">
+        <p>件名:</p>
+        <p class="normal-text"><%= @contact.subject %></p>
+      </div>
+      <div class="contact-field">
+        <p>お問い合わせの内容:</p>
+        <p class="normal-text"><%= @contact.message %></p>
+      </div>
+      <div class="select-button">
+        <div class="formContainer">
+          <%= form_with model: @contact, url: back_contacts_path, data: { turbo: false } do |f| %>
+            <%= f.hidden_field :name %>
+            <%= f.hidden_field :email %>
+            <%= f.hidden_field :subject %>
+            <%= f.hidden_field :message %>
+            <%= f.submit "戻る", class: "btn btn-secondary custom-button" %></div>
+          <% end %>
+          <%= form_with model: @contact do |f| %>
+            <%= f.hidden_field :name %>
+            <%= f.hidden_field :email %>
+            <%= f.hidden_field :subject %>
+            <%= f.hidden_field :message %>
+            <%= f.submit "送信", class: "btn btn-success custom-button" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
