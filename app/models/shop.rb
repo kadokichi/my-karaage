@@ -27,6 +27,6 @@ class Shop < ApplicationRecord
 
   def liked?(user)
     return false unless user
-    likes.where(user_id: user.id).exists?
+    likes.exists?(user_id: user.id)
   end
 end

@@ -16,12 +16,12 @@ class ReviewsController < ApplicationController
     @review = @shop.reviews.build
     add_breadcrumb "レビューを書く"
   end
-  
+
   def create
     @shop = Shop.find(params[:shop_id])
     @review = @shop.reviews.build(review_params)
     @review.user = current_user
-    
+
     if @review.save
       redirect_to shop_path(@shop), notice: "レビューを投稿しました!"
     else
@@ -44,15 +44,15 @@ class ReviewsController < ApplicationController
       render "edit", status: :unprocessable_entity
     end
   end
-  
+
   def destroy
     @review = Review.find(params[:id])
     @review.destroy
     redirect_to shop_path(@review.shop), notice: "レビューを削除しました!"
   end
-    
+
   private
-    
+
   def review_params
     params.require(:review).permit(:content, :score)
   end

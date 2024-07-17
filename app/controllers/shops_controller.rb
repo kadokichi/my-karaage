@@ -17,7 +17,7 @@ class ShopsController < ApplicationController
     @shop = current_user.shops.build
     add_breadcrumb "お店を登録"
   end
-    
+
   def create
     @shop = current_user.shops.build(shop_params)
     if @shop.save
@@ -41,7 +41,7 @@ class ShopsController < ApplicationController
       render :edit, status: :unprocessable_entity
     end
   end
-    
+
   def destroy
     @shop = current_user.shops.find(params[:id])
     @shop.destroy
@@ -58,7 +58,7 @@ class ShopsController < ApplicationController
     if params[:word].present?
       @shops = @shops.where("name LIKE ? ", "%#{params[:word]}%")
     end
-    
+
     if params[:taste].present?
       @shops = @shops.where(taste: params[:taste])
     end
@@ -76,9 +76,9 @@ class ShopsController < ApplicationController
 
     render :index
   end
-    
+
   private
-    
+
   def shop_params
     params.require(:shop).permit(:name, :address, :price, :taste, :description, :product_name, :shop_url, :image)
   end
