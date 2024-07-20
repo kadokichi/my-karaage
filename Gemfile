@@ -64,6 +64,7 @@ group :development, :test do
   gem "pry-rails"
   gem "rubocop-airbnb"
   gem "rspec-rails"
+  gem "counter_culture"
 end
 
 group :development do
@@ -76,7 +77,6 @@ group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
   gem "bullet"
-  gem "counter_culture"
 end
 
 group :test do
@@ -84,4 +84,5 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
   gem "factory_bot_rails"
+  gem "shoulda-matchers"
 end
