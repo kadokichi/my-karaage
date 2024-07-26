@@ -8,8 +8,8 @@ class User < ApplicationRecord
 
   validates :name, presence: true, length: { maximum: 20 }, uniqueness: { case_sensitive: false }
   validates :email, presence: true, length: { maximum: 50 },
-    format: { with: Devise.email_regexp },
-    uniqueness: { case_sensitive: false }
+                    format: { with: Devise.email_regexp },
+                    uniqueness: { case_sensitive: false }
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable

@@ -62,6 +62,9 @@ group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
   gem "dotenv-rails"
   gem "pry-rails"
+  gem "rubocop-airbnb"
+  gem "rspec-rails"
+  gem "counter_culture"
 end
 
 group :development do
@@ -74,13 +77,12 @@ group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
   gem "bullet"
-  gem "counter_culture"
 end
 
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
   gem "selenium-webdriver"
-
+  gem "factory_bot_rails"
+  gem "shoulda-matchers"
 end
-gem "sassc-rails"

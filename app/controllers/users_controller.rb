@@ -1,11 +1,14 @@
 class UsersController < ApplicationController
   before_action :authorize_user, only: [:edit, :update]
-  before_action :ensure_normal_user, only: [:edit, :update, :destroy]
 
   def edit
-    @user = User.find(params[:id])
-    add_breadcrumb @user.name, user_path(@user)
-    add_breadcrumb "プロフィール編集"
+    if current_user.email == "guest@example.com"
+      redirect_to root_path, notice: "ゲストユーザーの情報は変更できません。"
+    else
+      @user = User.find(params[:id])
+      add_breadcrumb @user.name, user_path(@user)
+      add_breadcrumb "プロフィール編集"
+    end
   end
 
   def show
@@ -17,9 +20,9 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-        redirect_to @user, notice: "ユーザー情報を更新しました!"
+      redirect_to @user, notice: "ユーザー情報を更新しました!"
     else
-        render :edit, status: :unprocessable_entity
+      render :edit, status: :unprocessable_entity
     end
   end
 
@@ -32,11 +35,5 @@ class UsersController < ApplicationController
   def authorize_user
     @user = User.find(params[:id])
     redirect_to root_path unless @user == current_user
-  end
-
-  def ensure_normal_user
-    if current_user.email == "guest@example.com"
-      redirect_to root_path, notice: "ゲストユーザーの情報は変更できません。"
-    end
   end
 end
