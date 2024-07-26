@@ -83,7 +83,7 @@ RSpec.describe "Users", type: :request do
         expect(response.body).to include(user.name)
         expect(response.body).to include('<div class="user-image">')
       end
-      
+
       it "ログインしていない時にヘッダーに表示される項目があること" do
         expect(response.body).to include("ゲストログイン")
         expect(response.body).to include("ログイン")

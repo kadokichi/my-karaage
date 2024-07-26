@@ -58,7 +58,8 @@ RSpec.describe User, type: :model do
   describe "methods" do
     describe "#user_image" do
       it "添付画像があれば添付画像を返すこと" do
-        user.image.attach(io: File.open(Rails.root.join("spec/images/sample_user_image.png")), filename: 'sample_image.png', content_type: 'image/png')
+        user.image.attach(io: File.open(Rails.root.join("spec/images/sample_user_image.png")),
+                          filename: 'sample_image.png', content_type: 'image/png')
         expect(user.user_image).to eq(user.image)
       end
 
