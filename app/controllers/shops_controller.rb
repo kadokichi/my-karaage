@@ -1,10 +1,6 @@
 class ShopsController < ApplicationController
-  before_action :authenticate_user!, except: [:show, :index, :search]
+  before_action :authenticate_user!, except: [:show, :search]
   before_action :set_shop_breadcrumbs, only: [:search, :show, :edit]
-
-  def index
-    @shops = Shop.includes(image_attachment: :blob).all
-  end
 
   def show
     @shop = Shop.find(params[:id])
@@ -73,8 +69,6 @@ class ShopsController < ApplicationController
         @shops = @shops.left_joins(:likes).group(:id).order('COUNT(likes.id) DESC')
       end
     end
-
-    render :index
   end
 
   private
