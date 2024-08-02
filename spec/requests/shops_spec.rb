@@ -9,8 +9,11 @@ RSpec.describe "Shops", type: :request do
   end
 
   describe "GET shops/show" do
-    it "店舗詳細ページにアクセスでき、店舗の情報や店舗の地図が含まれていること" do
+    before do
       get shop_path(shop)
+    end
+
+    it "店舗詳細ページにアクセスでき、店舗の情報や店舗の地図が含まれていること" do
       expect(response).to have_http_status(:success)
       expect(response.body).to include('<img class="shop-image-size"')
       expect(response.body).to include(shop.name)
@@ -24,12 +27,28 @@ RSpec.describe "Shops", type: :request do
       expect(response.body).to include('div id="map"')
       expect(response.body).to include("function initMap()")
     end
+
+    it "店舗詳細ページにパンくずリストが含まれていること" do
+      expect(response.body).to include('<ul class="breadcrumb">')
+      expect(response.body).to include('<a href="/">ホーム</a>')
+      expect(response.body).to include('<a href="/shops/search">検索結果</a>')
+      expect(response.body).to include(shop.name)
+    end
   end
 
   describe "GET shops/new" do
-    it "店舗作成ページにアクセスできること" do
+    before do
       get new_shop_path
+    end
+
+    it "店舗作成ページにアクセスできること" do
       expect(response).to have_http_status(:success)
+    end
+
+    it "店舗作成ページにパンくずリストが含まれていること" do
+      expect(response.body).to include('<ul class="breadcrumb">')
+      expect(response.body).to include('<a href="/">ホーム</a>')
+      expect(response.body).to include("お店を登録")
     end
   end
 
@@ -60,8 +79,11 @@ RSpec.describe "Shops", type: :request do
   end
 
   describe "GET shops/edit" do
-    it "店舗編集ページにアクセスでき、店舗情報が含まれていること" do
+    before do
       get edit_shop_path(shop)
+    end
+
+    it "店舗編集ページにアクセスでき、店舗情報が含まれていること" do
       expect(response).to have_http_status(:success)
       expect(response.body).to include(shop.name)
       expect(response.body).to include(shop.address)
@@ -70,6 +92,14 @@ RSpec.describe "Shops", type: :request do
       expect(response.body).to include(shop.price.to_s)
       expect(response.body).to include(shop.description)
       expect(response.body).to include(shop.shop_url)
+    end
+
+    it "店舗編集ページにパンくずリストが含まれていること" do
+      expect(response.body).to include('<ul class="breadcrumb">')
+      expect(response.body).to include('<a href="/">ホーム</a>')
+      expect(response.body).to include('<a href="/shops/search">検索結果</a>')
+      expect(response.body).to include("<a href=\"/shops/#{shop.id}\">#{shop.name}</a>")
+      expect(response.body).to include("店舗の編集")
     end
   end
 
@@ -180,7 +210,7 @@ RSpec.describe "Shops", type: :request do
       it "いいね数の多い順にショップを返すこと" do
         get search_shops_path, params: { sort: "popular" }
         expect(response).to have_http_status(:success)
-        expect([shop4, shop3, shop2, shop, shop5]).to match_array([shop4, shop3, shop2, shop, shop5])
+        expect([shop4, shop3, shop2, shop5, shop]).to match_array([shop4, shop3, shop2, shop5, shop])
       end
     end
 
@@ -234,6 +264,15 @@ RSpec.describe "Shops", type: :request do
         get search_shops_path, params: {}
         expect(response).to have_http_status(:success)
         expect(response.body).to include(shop.name, shop2.name, shop3.name, shop4.name, shop5.name)
+      end
+    end
+
+    context "パンくずリスト" do
+      it "店舗検索ページにパンくずリストが含まれていること" do
+        get search_shops_path
+        expect(response.body).to include('<ul class="breadcrumb">')
+        expect(response.body).to include('<a href="/">ホーム</a>')
+        expect(response.body).to include("検索結果")
       end
     end
   end
