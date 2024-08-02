@@ -16,6 +16,7 @@ FactoryBot.define do
     price { 300 }
     description { "Test Description 123" }
     product_name { "Test Product" }
+    shop_url { "https://www.osakacastle.net/" }
   end
 
   factory :shop3, class: 'Shop' do
