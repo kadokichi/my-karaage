@@ -1,10 +1,6 @@
 class ShopsController < ApplicationController
-  before_action :authenticate_user!, except: [:show, :index, :search]
+  before_action :authenticate_user!, except: [:show, :search]
   before_action :set_shop_breadcrumbs, only: [:search, :show, :edit]
-
-  def index
-    @shops = Shop.includes(image_attachment: :blob).all
-  end
 
   def show
     @shop = Shop.find(params[:id])
@@ -28,9 +24,14 @@ class ShopsController < ApplicationController
   end
 
   def edit
-    @shop = current_user.shops.find(params[:id])
-    add_breadcrumb @shop.name, shop_path(@shop)
-    add_breadcrumb "店舗の編集"
+    @shop = current_user.shops.find_by(id: params[:id])
+
+    if @shop.nil?
+      redirect_to root_path, notice: "このページにアクセスする権限がありません。"
+    else
+      add_breadcrumb @shop.name, shop_path(@shop)
+      add_breadcrumb "店舗の編集"
+    end
   end
 
   def update
@@ -70,11 +71,9 @@ class ShopsController < ApplicationController
       when "oldest"
         @shops = @shops.order(id: :asc)
       when "popular"
-        @shops = @shops.left_joins(:likes).group(:id).order('COUNT(likes.id) DESC')
+        @shops = @shops.left_joins(:likes).group(:id).order("COUNT(likes.id) DESC, shops.created_at DESC")
       end
     end
-
-    render :index
   end
 
   private
