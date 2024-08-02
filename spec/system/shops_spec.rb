@@ -187,6 +187,11 @@ RSpec.describe "Shops", type: :system do
         click_on "口コミ"
         expect(current_path).to eq(shop_reviews_path(shop2))
       end
+
+      it "店舗のurlをクリックするとurlのページに遷移できること" do
+        click_on shop2.shop_url
+        expect(page).to have_current_path(shop2.shop_url, url: true)
+      end
     end
 
     context "店舗作成ユーザー以外のユーザーの場合" do
