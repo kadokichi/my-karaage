@@ -24,9 +24,14 @@ class ShopsController < ApplicationController
   end
 
   def edit
-    @shop = current_user.shops.find(params[:id])
-    add_breadcrumb @shop.name, shop_path(@shop)
-    add_breadcrumb "店舗の編集"
+    @shop = current_user.shops.find_by(id: params[:id])
+
+    if @shop.nil?
+      redirect_to root_path, notice: "このページにアクセスする権限がありません。"
+    else
+      add_breadcrumb @shop.name, shop_path(@shop)
+      add_breadcrumb "店舗の編集"
+    end
   end
 
   def update
@@ -66,7 +71,7 @@ class ShopsController < ApplicationController
       when "oldest"
         @shops = @shops.order(id: :asc)
       when "popular"
-        @shops = @shops.left_joins(:likes).group(:id).order('COUNT(likes.id) DESC')
+        @shops = @shops.left_joins(:likes).group(:id).order("COUNT(likes.id) DESC, shops.created_at DESC")
       end
     end
   end
