@@ -6,7 +6,7 @@ class NicesController < ApplicationController
     @nice = @review.nices.build(user: current_user)
     if @nice.save
       @review.update_nices_count
-      redirect_to shop_review_path(@review.shop, @review), notice: "いいねを追加しました!"
+      redirect_to shop_reviews_path(@review.shop), notice: "いいねを追加しました!"
     end
   end
 
@@ -14,7 +14,7 @@ class NicesController < ApplicationController
     @nice = @review.nices.find_by(user: current_user)
     if @nice.destroy
       @review.update_nices_count
-      redirect_to shop_review_path(@review.shop, @review), notice: "いいねを取り消しました"
+      redirect_to shop_reviews_path(@review.shop), notice: "いいねを取り消しました"
     end
   end
 
