@@ -56,6 +56,7 @@ gem "aws-sdk-s3"
 gem "breadcrumbs_on_rails"
 gem "geocoder"
 gem "rails_admin"
+gem "counter_culture"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -64,7 +65,6 @@ group :development, :test do
   gem "pry-rails"
   gem "rubocop-airbnb"
   gem "rspec-rails"
-  gem "counter_culture"
 end
 
 group :development do
