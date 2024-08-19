@@ -1,12 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  let!(:user) { FactoryBot.create(:user) }
-  let(:another_user) { FactoryBot.build(:another_user) }
-  let(:shop) { FactoryBot.create(:shop, user: user) }
-  let(:review) { FactoryBot.create(:review, user: user, shop: shop) }
-  let!(:like) { FactoryBot.create(:like, user: user, shop: shop) }
-  let!(:nice) { FactoryBot.create(:nice, user: user, review: review) }
+  let!(:user) { create(:user) }
+  let(:another_user) { build(:another_user) }
+  let(:shop) { create(:shop, user: user) }
+  let(:review) { create(:review, user: user, shop: shop) }
+  let!(:like) { create(:like, user: user, shop: shop) }
+  let!(:nice) { create(:nice, user: user, review: review) }
 
   describe "validations" do
     it "有効な属性を持つこと" do
