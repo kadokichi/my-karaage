@@ -45,4 +45,22 @@ FactoryBot.define do
     description { "Test Description 12345" }
     product_name { "Test Product" }
   end
+
+  factory :new_shop, class: 'Shop' do
+    sequence(:name) { |n| "Test Store #{n}" }
+    sequence(:address) { |n| "Test St #{n}" }
+    taste { "濃い味系" }
+    price { 300 }
+    sequence(:description) { |n| "Test Description #{n}" }
+    product_name { "Test Product" }
+  end
+
+  factory :popular_shop, class: 'Shop' do
+    sequence(:name) { |n| "Popular Store #{n}" }
+    sequence(:address) { |n| "Popular St #{n}" }
+    taste { "濃い味系" }
+    price { 300 }
+    sequence(:description) { |n| "Popular Description #{n}" }
+    product_name { "Test Product" }
+  end
 end
