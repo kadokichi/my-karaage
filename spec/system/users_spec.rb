@@ -2,11 +2,13 @@ require 'rails_helper'
 
 RSpec.describe "Users", type: :system do
   describe "ユーザーのログイン" do
-    context "既にユーザー登録している状態" do
-      let!(:user) { FactoryBot.create(:user) }
+    context "既にユーザー登録している場合" do
+      let!(:user) { create(:user) }
+      before do
+        visit new_user_session_path
+      end
 
       it "ログインを成功させ、ホームページに遷移できること" do
-        visit new_user_session_path
         fill_in "メールアドレス", with: user.email
         fill_in "パスワード", with: user.password
         click_button "ログイン"
@@ -16,6 +18,13 @@ RSpec.describe "Users", type: :system do
         expect(page).to have_content("店舗登録")
         expect(page).to have_content("お問い合わせ")
         expect(page).to have_content("ログアウト")
+      end
+
+      it "メールアドレスorパスワードが正しくない場合は、ログインできないこと" do
+        fill_in "メールアドレス", with: user.email
+        fill_in "パスワード", with: "a" * 8
+        click_button "ログイン"
+        expect(page).to have_content("メールアドレスまたはパスワードが違います。")
       end
     end
 
@@ -34,8 +43,8 @@ RSpec.describe "Users", type: :system do
   end
 
   describe "新規ユーザー作成" do
-    let(:user) { FactoryBot.build(:user) }
-    let!(:another_user) { FactoryBot.create(:another_user) }
+    let(:user) { build(:user) }
+    let!(:another_user) { create(:another_user) }
     before do
       visit new_user_registration_path
     end
@@ -62,9 +71,9 @@ RSpec.describe "Users", type: :system do
   end
 
   describe "ユーザープロフィールの更新" do
-    context "既にユーザー登録している状態" do
-      let!(:user) { FactoryBot.create(:user) }
-      let!(:another_user) { FactoryBot.create(:another_user) }
+    context "既にユーザー登録している場合" do
+      let!(:user) { create(:user) }
+      let!(:another_user) { create(:another_user) }
       before do
         sign_in user
         @image_path = Rails.root.join("spec/images/sample_user_image.png")
@@ -93,8 +102,8 @@ RSpec.describe "Users", type: :system do
       end
     end
 
-    context "ゲストログインしている状態" do
-      let!(:guest_user) { FactoryBot.create(:guest_user) }
+    context "ゲストログインしている場合" do
+      let!(:guest_user) { create(:guest_user) }
       before do
         sign_in guest_user
       end
@@ -108,9 +117,9 @@ RSpec.describe "Users", type: :system do
   end
 
   describe "ユーザーアカウントの更新" do
-    context "既にユーザー登録している状態" do
-      let!(:user) { FactoryBot.create(:user) }
-      let!(:another_user) { FactoryBot.create(:another_user) }
+    context "既にユーザー登録している場合" do
+      let!(:user) { create(:user) }
+      let!(:another_user) { create(:another_user) }
       before do
         sign_in user
         visit edit_user_registration_path
@@ -143,8 +152,8 @@ RSpec.describe "Users", type: :system do
       end
     end
 
-    context "ゲストログインしている状態" do
-      let!(:guest_user) { FactoryBot.create(:guest_user) }
+    context "ゲストログインしている場合" do
+      let!(:guest_user) { create(:guest_user) }
       before do
         sign_in guest_user
         visit edit_user_registration_path
@@ -159,7 +168,7 @@ RSpec.describe "Users", type: :system do
 
   describe "ユーザー画面のパンくずリスト" do
     context "ユーザー詳細画面" do
-      let!(:user) { FactoryBot.create(:user) }
+      let!(:user) { create(:user) }
       before do
         sign_in user
         visit user_path(user)
@@ -176,7 +185,7 @@ RSpec.describe "Users", type: :system do
     end
 
     context "ユーザープロフィール編集画面" do
-      let!(:user) { FactoryBot.create(:user) }
+      let!(:user) { create(:user) }
       before do
         sign_in user
         visit edit_user_path(user)
@@ -204,7 +213,7 @@ RSpec.describe "Users", type: :system do
     end
 
     context "ユーザーアカウント編集画面" do
-      let!(:user) { FactoryBot.create(:user) }
+      let!(:user) { create(:user) }
       before do
         sign_in user
         visit edit_user_registration_path
@@ -233,11 +242,11 @@ RSpec.describe "Users", type: :system do
   end
 
   describe 'ユーザー詳細画面' do
-    let!(:user) { FactoryBot.create(:user) }
-    let!(:another_user) { FactoryBot.create(:another_user) }
-    let!(:created_shop) { FactoryBot.create(:shop, user: user) }
-    let!(:liked_shop) { FactoryBot.create(:shop2, user: another_user) }
-    let!(:like) { FactoryBot.create(:like, user: user, shop: liked_shop) }
+    let!(:user) { create(:user) }
+    let!(:another_user) { create(:another_user) }
+    let!(:created_shop) { create(:shop, user: user) }
+    let!(:liked_shop) { create(:shop2, user: another_user) }
+    let!(:like) { create(:like, user: user, shop: liked_shop) }
 
     before do
       sign_in user

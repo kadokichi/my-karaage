@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe "Users", type: :request do
-  let!(:user) { FactoryBot.create(:user) }
-  let!(:guest_user) { FactoryBot.create(:guest_user) }
-  let!(:another_user) { FactoryBot.create(:another_user) }
+  let!(:user) { create(:user) }
+  let!(:guest_user) { create(:guest_user) }
+  let!(:another_user) { create(:another_user) }
 
   describe "GET /users/edit" do
     context "ユーザーがログインしている状態" do
@@ -138,6 +138,42 @@ RSpec.describe "Users", type: :request do
         expect(user.name).to_not eq("Another Test User")
         expect(user.name).to eq("Test User")
         expect(response.body).to include("ユーザー名はすでに存在します")
+      end
+    end
+  end
+
+  describe "POST /users" do
+    let(:click_user) { build(:click_user) }
+    before do
+      get new_user_registration_path
+    end
+
+    context "有効なパラメーターを持つ場合" do
+      it "ユーザーが作成され、ホーム画面に遷移すること" do
+        post user_registration_path,
+        params: {
+          user: {
+            name: click_user.name, email: click_user.email, password: click_user.password,
+            password_confirmation: click_user.password_confirmation,
+          },
+        }
+        expect(response).to redirect_to(root_path)
+        follow_redirect!
+        expect(response.body).to include("アカウント登録が完了しました。")
+      end
+    end
+
+    context "有効なパラメーターを持たない場合" do
+      it "ユーザーが作成できず、エラーメッセージが含まれること" do
+        post user_registration_path,
+        params: {
+          user: {
+            name: nil, email: click_user.email, password: click_user.password,
+            password_confirmation: click_user.password_confirmation,
+          },
+        }
+        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response.body).to include("ユーザー名を入力してください")
       end
     end
   end

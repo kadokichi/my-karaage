@@ -19,4 +19,11 @@ FactoryBot.define do
     password { "password" }
     password_confirmation { "password" }
   end
+
+  factory :click_user, class: 'User' do
+    sequence(:name) { |n| "Click User #{n}" }
+    sequence(:email) { |n| "clickuser#{n}@example.com" }
+    password { "password" }
+    password_confirmation { "password" }
+  end
 end
