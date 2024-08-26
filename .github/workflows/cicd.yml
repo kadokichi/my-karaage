@@ -35,9 +35,9 @@ jobs:
           POSTGRES_DB: my_karaage_test
         options: >
           --health-cmd pg_isready
-          --health-interval=10s 
-          --health-timeout=5s 
-          --health-retries=5
+          --health-interval 10s 
+          --health-timeout 5s 
+          --health-retries 5
 
     steps:
       - name: Checkout code
