@@ -16,6 +16,8 @@ env:
   MAIL_ADDRESS: ${{ secrets.MAIL_ADDRESS }}
   MAIL_PASSWORD: ${{ secrets.MAIL_PASSWORD }}
   AWS_BUCKET: ${{ secrets.AWS_BUCKET }}
+  DB_USERNAME: ${{ secrets.DB_USERNAME }}
+  DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
 
 permissions:
   contents: read
@@ -40,7 +42,7 @@ jobs:
           --health-retries 5
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
@@ -48,7 +50,7 @@ jobs:
           bundler-cache: true
 
       - name: Cache node modules
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: node_modules
           key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
@@ -66,7 +68,7 @@ jobs:
       - name: Database create and migrate
         run: |
           cp config/database.yml.ci config/database.yml
-          bundle exec rails db:create RAILS_ENV=test --trace
+          bundle exec rails db:create RAILS_ENV=test
           bundle exec rails db:migrate RAILS_ENV=test
 
       - name: Run rspec
