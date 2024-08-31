@@ -11,7 +11,7 @@ if [ "$RAILS_ENV" = "production" ]; then
   #bundle exec rails db:create
 
   # シード作成後にコメントアウト
-  bundle exec rails db:seed
+  #bundle exec rails db:seed
 
   # マイグレーション処理
   bundle exec rails db:migrate

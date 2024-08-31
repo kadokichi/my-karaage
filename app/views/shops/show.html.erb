@@ -20,7 +20,7 @@
         <% end %>
         <p><strong>平均スコア:</strong> 
           <% if @average_score.present? %>
-            <%= @average_score.round(2) %>
+            <span class="score-style"><%= @average_score.round(2) %></span>
           <% else %>
             <%= "まだレビューがありません" %>
           <% end %>
