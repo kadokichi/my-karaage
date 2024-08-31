@@ -150,6 +150,7 @@ RSpec.describe "Shops", type: :system do
         expect(page).to have_content(shop2.description)
         expect(page).to have_content(shop2.shop_url)
         expect(page).to have_content(shop2.likes_count)
+        expect(page).to have_content(shop2.created_at.strftime('%Y/%m/%d %H:%M'))
       end
 
       it "店舗詳細画面に店舗の地図が表示されること" do
@@ -209,6 +210,7 @@ RSpec.describe "Shops", type: :system do
         expect(page).to have_content(shop2.description)
         expect(page).to have_content(shop2.shop_url)
         expect(page).to have_content(shop2.likes_count)
+        expect(page).to have_content(shop2.created_at.strftime('%Y/%m/%d %H:%M'))
       end
 
       it "店舗詳細画面に店舗の地図が表示されること" do

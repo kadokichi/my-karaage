@@ -3,6 +3,9 @@
     <%= render_breadcrumbs builder: ::CustomBreadcrumbsBuilder %>
     <h2>お店の詳細</h2>
     <div class="main-contents">
+      <div class="shop-created-time">
+        <strong>作成日:</strong><%= l @shop.created_at %>
+      </div>
       <h2><%= @shop.name%></h2>
       <%= image_tag @shop.shop_image, class: "shop-image-size" %>
       <div class="shop-details">

@@ -144,6 +144,12 @@ span {
   font-size: 20px;
 }
 
+.shop-created-time {
+  font-size: 14px;
+  text-align: right;
+  margin-bottom: 10px;
+}
+
 @media (max-width: 900px) {
   .all-shops {
     grid-template-columns: repeat(2, 1fr);

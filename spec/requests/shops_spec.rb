@@ -24,6 +24,7 @@ RSpec.describe "Shops", type: :request do
       expect(response.body).to include(shop.description)
       expect(response.body).to include(shop.shop_url)
       expect(response.body).to include(shop.likes_count.to_s)
+      expect(response.body).to include(shop.created_at.strftime('%Y/%m/%d %H:%M'))
       expect(response.body).to include('div id="map"')
       expect(response.body).to include("function initMap()")
     end

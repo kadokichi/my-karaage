@@ -13,6 +13,9 @@
       <% @shops.each do |shop| %> 
         <div class="main-contents">
           <div class="shop-details">
+            <div class="shop-created-time">
+              <strong>作成日:</strong><%= l shop.created_at %>
+            </div>
             <%= image_tag shop.shop_image, class: "shop-list-image-size" %>
             <h3><%= shop.name %></h3>
             <p><strong>住所:</strong> <%= shop.address %></p>
