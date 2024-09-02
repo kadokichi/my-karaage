@@ -563,4 +563,61 @@ RSpec.describe "Shops", type: :system do
       end
     end
   end
+
+  describe "ページネーション" do
+    let!(:user) { create(:user) }
+    let!(:new_shops) { create_list(:new_shop, 12, user: user) }
+    let!(:popular_shops) { create_list(:popular_shop, 12, user: user) }
+
+    before do
+      visit search_shops_path
+    end
+
+    it "ページネーションが表示されており,検索結果の件数と各ページの表示数が正しいこと" do
+      within(".page-nation") do
+        expect(page).to have_link("1")
+        expect(page).to have_link("2")
+        expect(page).to have_link("次")
+        expect(page).to have_link("最後")
+      end
+      within ".search-result" do
+        expect(page).to have_content("検索結果 24件")
+      end
+      expect(page).to have_selector('.main-contents', count: 12)
+
+      click_on "次"
+
+      within(".page-nation") do
+        expect(page).to have_link("1")
+        expect(page).to have_link("2")
+        expect(page).to have_link("前")
+        expect(page).to have_link("最初")
+      end
+      within ".search-result" do
+        expect(page).to have_content("検索結果 24件")
+      end
+      expect(page).to have_selector('.main-contents', count: 12)
+    end
+
+    it "人気順をクリックして検索した場合、検索結果が正しく表示されること" do
+      fill_in "キーワードを入力", with: "Test"
+      check "人気順"
+      click_on "検索"
+
+      within ".search-result" do
+        expect(page).to have_content("検索結果 12件")
+      end
+    end
+
+    it "検索結果が13件未満の場合、ページネーションは表示されないこと" do
+      fill_in "キーワードを入力", with: "Test"
+      check "新着順"
+      click_on "検索"
+
+      within ".search-result" do
+        expect(page).to have_content("検索結果 12件")
+      end
+      expect(find(".page-nation").text).to be_empty
+    end
+  end
 end

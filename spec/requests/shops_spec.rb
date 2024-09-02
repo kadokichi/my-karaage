@@ -277,4 +277,19 @@ RSpec.describe "Shops", type: :request do
       end
     end
   end
+
+  describe "ページネーション" do
+    let!(:user) { create(:user) }
+    let!(:new_shops) { create_list(:new_shop, 20, user: user) }
+
+    it "ページ1が正しい店舗数を返すこと" do
+      get search_shops_path(page: 1)
+      expect(response.body.scan("Test Store").count).to eq(12)
+    end
+
+    it "ページ2が正しい店舗数を返すこと" do
+      get search_shops_path(page: 2)
+      expect(response.body.scan("Test Store").count).to eq(8)
+    end
+  end
 end

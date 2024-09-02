@@ -3,9 +3,9 @@
   <%= render "layouts/search" %>
   <div class="search-result">
     <% if params[:sort] == "popular" %>
-      <h2>検索結果 <%= @shops.count.size %>件</h2>
+      <h2>検索結果 <%= @total_shops.size %>件</h2>
     <% else %>
-      <h2>検索結果 <%=@shops.count %>件</h2>
+      <h2>検索結果 <%= @total_shops %>件</h2>
     <% end %>
   </div>
   <div class="all-shops">
@@ -31,5 +31,10 @@
         </div>  
       <% end %>
     <% end %>
+  </div>
+  <div class="page-nation-container">
+    <div class="page-nation">
+      <%= paginate @shops, theme: "bootstrap-5" %>
+    </div>
   </div>
 </div>

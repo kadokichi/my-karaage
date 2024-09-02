@@ -150,6 +150,21 @@ span {
   margin-bottom: 10px;
 }
 
+.page-nation-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 50px;
+}
+
+.page-nation .pagination {
+  margin: 1rem auto;
+  text-align: center;
+}
+
+.page-nation .page-link {
+  font-size: 30px;
+}
+
 @media (max-width: 900px) {
   .all-shops {
     grid-template-columns: repeat(2, 1fr);

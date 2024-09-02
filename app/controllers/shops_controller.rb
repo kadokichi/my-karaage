@@ -74,6 +74,9 @@ class ShopsController < ApplicationController
         @shops = @shops.left_joins(:likes).group(:id).order("COUNT(likes.id) DESC, shops.created_at DESC")
       end
     end
+
+    @total_shops = @shops.count
+    @shops = @shops.page(params[:page]).per(12)
   end
 
   private

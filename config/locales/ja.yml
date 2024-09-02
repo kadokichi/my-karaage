@@ -165,3 +165,10 @@ ja:
   time:
     formats:
       default: "%Y/%m/%d %H:%M"
+
+  views:
+    pagination:
+      first: 最初
+      last: 最後
+      previous: 前
+      next: 次
