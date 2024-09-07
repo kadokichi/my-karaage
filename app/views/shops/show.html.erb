@@ -10,7 +10,7 @@
       <%= image_tag @shop.shop_image, class: "shop-image-size" %>
       <div class="shop-details">
         <p><strong>住所:</strong> <%= @shop.address %></p>
-        <p><strong>オススメの商品:</strong> <%= @shop.product_name %></p>
+        <p><strong>オススメの商品:</strong> <strong class="product-name"><%= @shop.product_name %></strong></p>
         <p><strong>味の系統:</strong> <%= @shop.taste %></p>
         <p><strong>お店のPR:</strong> <%= @shop.description %></p>
         <p><strong>予算:</strong> <%= @shop.price %>円~</p>
