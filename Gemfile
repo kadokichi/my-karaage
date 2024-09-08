@@ -57,6 +57,8 @@ gem "breadcrumbs_on_rails"
 gem "geocoder"
 gem "rails_admin"
 gem "counter_culture"
+gem "kaminari"
+gem "bootstrap5-kaminari-views"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -77,6 +79,8 @@ group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
   gem "bullet"
+  gem "rails-erd"
+
 end
 
 group :test do

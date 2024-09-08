@@ -3,9 +3,9 @@
   <%= render "layouts/search" %>
   <div class="search-result">
     <% if params[:sort] == "popular" %>
-      <h2>検索結果 <%= @shops.count.size %>件</h2>
+      <h2>検索結果 <%= @total_shops.size %>件</h2>
     <% else %>
-      <h2>検索結果 <%=@shops.count %>件</h2>
+      <h2>検索結果 <%= @total_shops %>件</h2>
     <% end %>
   </div>
   <div class="all-shops">
@@ -13,7 +13,10 @@
       <% @shops.each do |shop| %> 
         <div class="main-contents">
           <div class="shop-details">
-            <p><%= image_tag shop.shop_image, class: "shop-image-size" %></p>
+            <div class="shop-created-time">
+              <strong>作成日:</strong><%= l shop.created_at %>
+            </div>
+            <%= image_tag shop.shop_image, class: "shop-list-image-size" %>
             <h3><%= shop.name %></h3>
             <p><strong>住所:</strong> <%= shop.address %></p>
             <p><strong>味の系統:</strong> <%= shop.taste %></p>
@@ -28,5 +31,10 @@
         </div>  
       <% end %>
     <% end %>
+  </div>
+  <div class="page-nation-container">
+    <div class="page-nation">
+      <%= paginate @shops, theme: "bootstrap-5" %>
+    </div>
   </div>
 </div>

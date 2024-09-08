@@ -20,10 +20,12 @@
           <%= f.password_field :password, autocomplete: "current-password", class: "custom-field" %>
         </div>
         <% if devise_mapping.rememberable? %>
-          <div class="field">
-            <%= f.check_box :remember_me %>
-            <%= f.label :remember_me, "覚えておく" %>
-          </div>
+          <% unless request.path == '/admins/sign_in' %>
+            <div class="field">
+              <%= f.check_box :remember_me %>
+              <%= f.label :remember_me, "覚えておく" %>
+            </div>
+          <% end %>
         <% end %>
         <div class="select-button">
           <%= link_to "キャンセル", root_path, class: "btn btn-secondary custom-button" %>

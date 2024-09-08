@@ -3,11 +3,14 @@
     <%= render_breadcrumbs builder: ::CustomBreadcrumbsBuilder %>
     <h2>お店の詳細</h2>
     <div class="main-contents">
+      <div class="shop-created-time">
+        <strong>作成日:</strong><%= l @shop.created_at %>
+      </div>
       <h2><%= @shop.name%></h2>
       <%= image_tag @shop.shop_image, class: "shop-image-size" %>
       <div class="shop-details">
         <p><strong>住所:</strong> <%= @shop.address %></p>
-        <p><strong>オススメの商品:</strong> <%= @shop.product_name %></p>
+        <p><strong>オススメの商品:</strong> <strong class="product-name"><%= @shop.product_name %></strong></p>
         <p><strong>味の系統:</strong> <%= @shop.taste %></p>
         <p><strong>お店のPR:</strong> <%= @shop.description %></p>
         <p><strong>予算:</strong> <%= @shop.price %>円~</p>
@@ -20,7 +23,7 @@
         <% end %>
         <p><strong>平均スコア:</strong> 
           <% if @average_score.present? %>
-            <%= @average_score.round(2) %>
+            <span class="score-style"><%= @average_score.round(2) %></span>
           <% else %>
             <%= "まだレビューがありません" %>
           <% end %>

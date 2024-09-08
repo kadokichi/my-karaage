@@ -1,0 +1,7 @@
+test:
+  adapter: postgresql
+  encoding: unicode
+  host: 127.0.0.1
+  username: <%= ENV['DB_USERNAME'] %>
+  password: <%= ENV['DB_PASSWORD'] %>
+  database: my_karaage_test

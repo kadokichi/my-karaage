@@ -24,6 +24,7 @@ RSpec.describe "Shops", type: :request do
       expect(response.body).to include(shop.description)
       expect(response.body).to include(shop.shop_url)
       expect(response.body).to include(shop.likes_count.to_s)
+      expect(response.body).to include(shop.created_at.strftime('%Y/%m/%d %H:%M'))
       expect(response.body).to include('div id="map"')
       expect(response.body).to include("function initMap()")
     end
@@ -274,6 +275,21 @@ RSpec.describe "Shops", type: :request do
         expect(response.body).to include('<a href="/">ホーム</a>')
         expect(response.body).to include("検索結果")
       end
+    end
+  end
+
+  describe "ページネーション" do
+    let!(:user) { create(:user) }
+    let!(:new_shops) { create_list(:new_shop, 20, user: user) }
+
+    it "ページ1が正しい店舗数を返すこと" do
+      get search_shops_path(page: 1)
+      expect(response.body.scan("Test Store").count).to eq(12)
+    end
+
+    it "ページ2が正しい店舗数を返すこと" do
+      get search_shops_path(page: 2)
+      expect(response.body.scan("Test Store").count).to eq(8)
     end
   end
 end
