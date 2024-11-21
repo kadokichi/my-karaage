@@ -48,30 +48,11 @@ class ShopsController < ApplicationController
   end
 
   def search
-    @shops = Shop.includes(image_attachment: :blob).all
-
-    if params[:address].present?
-      @shops = @shops.where("address LIKE ? ", "%#{params[:address]}%")
-    end
-
-    if params[:word].present?
-      @shops = @shops.where("name LIKE ? ", "%#{params[:word]}%")
-    end
-
-    if params[:taste].present?
-      @shops = @shops.where(taste: params[:taste])
-    end
-
-    if params[:sort].present?
-      case params[:sort]
-      when "latest"
-        @shops = @shops.order(id: :desc)
-      when "oldest"
-        @shops = @shops.order(id: :asc)
-      when "popular"
-        @shops = @shops.left_joins(:likes).group(:id).order("COUNT(likes.id) DESC, shops.created_at DESC")
-      end
-    end
+    @shops = Shop.includes(image_attachment: :blob).
+      by_address(params[:address]).
+      by_word(params[:word]).
+      by_taste(params[:taste]).
+      sorted_by(params[:sort])
 
     @total_shops = @shops.count
     @shops = @shops.page(params[:page]).per(12)
