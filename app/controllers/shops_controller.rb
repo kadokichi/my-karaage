@@ -1,5 +1,6 @@
 class ShopsController < ApplicationController
   before_action :authenticate_user!, except: [:show, :search]
+  before_action :set_shop, only: [:update, :destroy]
   before_action :set_shop_breadcrumbs, only: [:search, :show, :edit]
 
   def show
@@ -25,7 +26,6 @@ class ShopsController < ApplicationController
 
   def edit
     @shop = current_user.shops.find_by(id: params[:id])
-
     if @shop.nil?
       redirect_to root_path, notice: "このページにアクセスする権限がありません。"
     else
@@ -35,7 +35,6 @@ class ShopsController < ApplicationController
   end
 
   def update
-    @shop = current_user.shops.find(params[:id])
     if @shop.update(shop_params)
       redirect_to @shop, notice: "店舗の情報を更新しました!"
     else
@@ -44,7 +43,6 @@ class ShopsController < ApplicationController
   end
 
   def destroy
-    @shop = current_user.shops.find(params[:id])
     @shop.destroy
     redirect_to root_path, notice: "店舗を削除しました!"
   end
@@ -83,6 +81,10 @@ class ShopsController < ApplicationController
 
   def shop_params
     params.require(:shop).permit(:name, :address, :price, :taste, :description, :product_name, :shop_url, :image)
+  end
+
+  def set_shop
+    @shop = current_user.shops.find(params[:id])
   end
 
   def set_shop_breadcrumbs
