@@ -1,5 +1,6 @@
 class ShopsController < ApplicationController
   before_action :authenticate_user!, except: [:show, :search]
+  before_action :set_shop, only: [:update, :destroy]
   before_action :set_shop_breadcrumbs, only: [:search, :show, :edit]
 
   def show
@@ -25,7 +26,6 @@ class ShopsController < ApplicationController
 
   def edit
     @shop = current_user.shops.find_by(id: params[:id])
-
     if @shop.nil?
       redirect_to root_path, notice: "このページにアクセスする権限がありません。"
     else
@@ -35,7 +35,6 @@ class ShopsController < ApplicationController
   end
 
   def update
-    @shop = current_user.shops.find(params[:id])
     if @shop.update(shop_params)
       redirect_to @shop, notice: "店舗の情報を更新しました!"
     else
@@ -44,36 +43,16 @@ class ShopsController < ApplicationController
   end
 
   def destroy
-    @shop = current_user.shops.find(params[:id])
     @shop.destroy
     redirect_to root_path, notice: "店舗を削除しました!"
   end
 
   def search
-    @shops = Shop.includes(image_attachment: :blob).all
-
-    if params[:address].present?
-      @shops = @shops.where("address LIKE ? ", "%#{params[:address]}%")
-    end
-
-    if params[:word].present?
-      @shops = @shops.where("name LIKE ? ", "%#{params[:word]}%")
-    end
-
-    if params[:taste].present?
-      @shops = @shops.where(taste: params[:taste])
-    end
-
-    if params[:sort].present?
-      case params[:sort]
-      when "latest"
-        @shops = @shops.order(id: :desc)
-      when "oldest"
-        @shops = @shops.order(id: :asc)
-      when "popular"
-        @shops = @shops.left_joins(:likes).group(:id).order("COUNT(likes.id) DESC, shops.created_at DESC")
-      end
-    end
+    @shops = Shop.includes(image_attachment: :blob).
+      by_address(params[:address]).
+      by_word(params[:word]).
+      by_taste(params[:taste]).
+      sorted_by(params[:sort])
 
     @total_shops = @shops.count
     @shops = @shops.page(params[:page]).per(12)
@@ -83,6 +62,10 @@ class ShopsController < ApplicationController
 
   def shop_params
     params.require(:shop).permit(:name, :address, :price, :taste, :description, :product_name, :shop_url, :image)
+  end
+
+  def set_shop
+    @shop = current_user.shops.find(params[:id])
   end
 
   def set_shop_breadcrumbs

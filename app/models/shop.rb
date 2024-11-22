@@ -13,6 +13,20 @@ class Shop < ApplicationRecord
   validates :description, presence: true, length: { maximum: 150 }
   validates :product_name, presence: true, length: { maximum: 20 }
 
+  scope :by_address, ->(address) { where("address LIKE ?", "%#{address}%") if address.present? }
+  scope :by_word, ->(word) { where("name LIKE ?", "%#{word}%") if word.present? }
+  scope :by_taste, ->(taste) { where(taste: taste) if taste.present? }
+  scope :sorted_by, ->(sort) {
+    case sort
+    when "latest"
+      order(id: :desc)
+    when "oldest"
+      order(id: :asc)
+    when "popular"
+      left_joins(:likes).group(:id).order("COUNT(likes.id) DESC, shops.created_at DESC")
+    end
+  }
+
   def shop_image
     if image.attached?
       image
