@@ -1,10 +1,11 @@
 class ReviewsController < ApplicationController
   before_action :authenticate_user!, except: [:index]
+  before_action :set_shop
+  before_action :set_review, only: [:edit, :update, :destroy]
   before_action :authorize_user!, only: [:edit, :update, :destroy]
   before_action :set_review_breadcrumbs, only: [:index, :new, :edit]
 
   def index
-    @shop = Shop.find(params[:shop_id])
     if user_signed_in?
       @reviews = @shop.reviews.includes(:user, :nices).order(created_at: :desc)
     else
@@ -13,13 +14,11 @@ class ReviewsController < ApplicationController
   end
 
   def new
-    @shop = Shop.find(params[:shop_id])
     @review = @shop.reviews.build
     add_breadcrumb "レビューを書く"
   end
 
   def create
-    @shop = Shop.find(params[:shop_id])
     @review = @shop.reviews.build(review_params)
     @review.user = current_user
 
@@ -53,18 +52,21 @@ class ReviewsController < ApplicationController
     params.require(:review).permit(:content, :score)
   end
 
+  def set_shop
+    @shop = Shop.find(params[:shop_id])
+  end
+
+  def set_review
+    @review = @shop.reviews.find(params[:id])
+  end
+
   def set_review_breadcrumbs
     add_breadcrumb "検索結果", search_shops_path
-    @shop = Shop.find(params[:shop_id])
     add_breadcrumb @shop.name, shop_path(@shop)
     add_breadcrumb "#{@shop.name} のレビュー", shop_reviews_path(@shop)
   end
 
   def authorize_user!
-    @shop = Shop.find(params[:shop_id])
-    @review = Review.find(params[:id])
-    unless @review.user == current_user
-      redirect_to root_path, notice: "権限がありません。"
-    end
+    redirect_to root_path, notice: "権限がありません。" unless @review.user == current_user
   end
 end
